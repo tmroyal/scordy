@@ -1,5 +1,13 @@
-import SynthEngine from "./synthEngine/synthEngine"
+import SynthEngine from "./SynthEngine/SynthEngine"
 
-const SE = SynthEngine();
+function startAudio(){
+  SynthEngine.init();
+  SynthEngine.setVolume(0.1);
 
-SE.init();
+  const synth = SynthEngine.createSynth();
+  synth.play(60,0.5,1);
+  synth.play(64,0.5,3);
+}
+
+
+document.getElementById("startAudio").addEventListener("click", startAudio);
