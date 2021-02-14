@@ -39,7 +39,6 @@ export default class Synth {
     const env = this.engine.audioContext.createGain();
 
     start = start || 0;
-    start += this.engine.audioContext.currentTime;
 
     osc.connect(env).connect(this.engine.gainNode);
     osc.type = 'sine';
