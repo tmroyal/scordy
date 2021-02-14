@@ -2,7 +2,7 @@ import Synth from "./Synth";
 
 export default class SynthEngine {
   constructor(){
-    console.warn("SynthEngine contains only static methods");
+    console.warn("SynthEngine is not meant to be instansiated");
   }
 
   /**
