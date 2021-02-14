@@ -28,6 +28,6 @@ export default class SynthEngine {
    * @param {float} volume 0-1
    */
   static setVolume(volume){
-    this.gainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
+    this.gainNode.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 0.05);
   }
 };
