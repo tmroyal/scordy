@@ -41,6 +41,12 @@ export default class Scale {
     return scaleData.note + baseNote + scaleData.octaveOffset;
   }
 
+  /**
+   * Get note and octave of passed in scale, degree, and octave 
+   * @param degree 
+   * @param scale 
+   * @param baseOctave 
+   */
   static getScaleMember(degree, scale, baseOctave){
     while (degree < 0){
       degree += scale.length;
