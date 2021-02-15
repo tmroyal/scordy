@@ -1,5 +1,5 @@
 const MS_PER_SECOND = 1000.0;
-const OLD_EVENT_TIME = 0.5;
+const OLD_EVENT_TIME = 2.0;
 
 export default class Scheduler {
 
@@ -38,8 +38,8 @@ export default class Scheduler {
       this.consumeEventsTo(this.currentBeat+1);
 
       if (this.running){
-        // schedule 4 times per beat
-        setTimeout(loop, MS_PER_SECOND*(this.lengthOfBeat()/4.0));
+        // schedule 8 times per beat
+        setTimeout(loop, MS_PER_SECOND*(this.lengthOfBeat()/8.0));
       }
     }
     loop();
@@ -80,7 +80,9 @@ export default class Scheduler {
     eligibleEvents.forEach(event=> this.consumeEvent(event));
 
     // filter out expired events
-    this.events = this.eventsBetweenBeats(beat, Infinity);
+    this.events = this.events.filter((event)=>{
+      return eligibleEvents.indexOf(event) == -1;
+    })
   }
 
   /**
