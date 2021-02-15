@@ -1,4 +1,4 @@
-import Synth from "./Synth";
+import Synth from "./Synth.mjs";
 
 export default class SynthEngine {
   constructor(){

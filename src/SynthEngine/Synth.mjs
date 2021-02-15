@@ -1,4 +1,4 @@
-import SynthUtil from './SynthUtil';
+import SynthUtil from './SynthUtil.mjs';
 
 const REL_PADDING = 50;
 
