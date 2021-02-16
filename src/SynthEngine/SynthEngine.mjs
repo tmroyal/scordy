@@ -13,13 +13,13 @@ export default class SynthEngine {
     this.audioContext = new AudioContext();
     this.gainNode = this.audioContext.createGain();
     this.gainNode.connect(this.audioContext.destination);
+    this.synths = {};
+
+    this.synths['SINE'] = new Synth(this);
   }
 
-  /**
-   * create a synth
-   */
-  static createSynth(){
-    return new Synth(this);
+  static playSynth(name, note, volume, duration){
+    this.synths[name].play(note, volume, duration);
   }
 
   /**

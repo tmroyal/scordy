@@ -1,6 +1,22 @@
 import SynthEngine from "./SynthEngine/SynthEngine.mjs"
 import Scheduler from "./SequencerEngine/Scheduler.mjs"
+import Blockly from 'blockly';
+import ConfigBlocklyBlocks from "./BlocklyConfig/ConfigBlockly.mjs"
 
+document.addEventListener("DOMContentLoaded", function(){
+  ConfigBlocklyBlocks(Blockly);
+
+  const workspace = Blockly.inject('blockly',
+    {toolbox: document.getElementById('toolbox')}); 
+
+  workspace.addChangeListener(()=>{
+    var code = Blockly.JavaScript.workspaceToCode(workspace);
+    document.getElementById('code').innerText = code;
+  });
+ 
+
+});
+/*
 function startAudio(){
   const scheduler = new Scheduler(SynthEngine);
 
@@ -24,3 +40,4 @@ function startAudio(){
 }
 
 document.getElementById("startAudio").addEventListener("click", startAudio);
+*/

@@ -1,4 +1,4 @@
-export class NumberGnerators {
+export class NumberGenerators {
 
   static randint(lower, upper){
     return Math.floor(this.randrange(lower, upper));
