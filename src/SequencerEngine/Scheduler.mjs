@@ -66,8 +66,8 @@ export default class Scheduler {
    * Consume events up to the beat given in the argument. 
    * Reschedules events that return a value.
    * Call event functions with parameters:
-   *    (time (float) - engine time of selected beat)
    *    (beat (int) - the beat)
+   *    (time (float) - engine time of selected beat)
    * 
    * @param {float} beat the beat to which to clear
    */
@@ -99,7 +99,7 @@ export default class Scheduler {
       this.events.push({
         f: event.f,
         atBeat: event.atBeat + atBeat,
-        id: this.nextId++
+        id: event.id // we reuse id in order to cancel
       })
     }
   }
@@ -187,6 +187,22 @@ export default class Scheduler {
       f: f, 
       id: this.nextId++
     });
+  }
+
+  /**
+   * Calls a function every n beats
+   * 
+   * @param f function to schedule
+   * @param everyNBeats number of beats which to call function
+   * @param atBeat first beat to start scheduling
+   */
+  scheduleRecurring(f, everyNBeats, atBeat){
+    const cb = function(beat, time){
+      f(beat, time);
+      return everyNBeats;
+    }
+
+    return this.schedule(cb);
   }
 
   /**
