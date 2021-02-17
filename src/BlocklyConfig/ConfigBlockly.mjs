@@ -44,7 +44,7 @@ export default function ConfigBlocklyBlocks(Blockly){
   Blockly.JavaScript['current_beat'] = function(block) {
     var code = 'current_beat';
     // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code+" + 1", Blockly.JavaScript.ADDITION];
   };
 
   /**
@@ -154,4 +154,5 @@ export default function ConfigBlocklyBlocks(Blockly){
     return code;
   };
 
+  // rewrite list index of to support 0 indexing
 }
