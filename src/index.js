@@ -3,6 +3,8 @@ import Scheduler from "./SequencerEngine/Scheduler.mjs"
 import Blockly from 'blockly';
 import ConfigBlocklyBlocks from "./BlocklyConfig/ConfigBlockly.mjs"
 import Synth from "./SynthEngine/Synth.mjs";
+import Chord from "./MusicalFunctions/Chord.mjs"
+import Scale from "./MusicalFunctions/Scale.mjs"
 import { NumberGenerators } from "./NumberGenerators/NumberGenerators.mjs";
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -20,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function(){
   window.scheduler = scheduler;
   window.SynthEngine = SynthEngine;
   window.NumberGenerators = NumberGenerators;
+  window.Chord = Chord;
+  window.Scale = Scale;
 
   SynthEngine.init();
   SynthEngine.setVolume(0.6);

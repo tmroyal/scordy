@@ -1,32 +1,32 @@
 export default class Chord {
-  static mapped(chord, baseNote, octave){
+  static transposed(chord, baseNote){
     return chord.map(member=>{
-      return member + baseNote + octave*12;
+      return member + baseNote;
     });
   }
 
-  static major(baseNote, octave){
-    return mapped([0,4,7], baseNote, octave);
+  static major(baseNote){
+    return this.transposed([0,4,7], baseNote);
   }
 
-  static minor(baseNote, octave){
-    return mapped([0,3,7], baseNote, octave);
+  static minor(baseNote){
+    return this.transposed([0,3,7], baseNote);
   }
 
-  static M7(baseNote, octave){
-    return mapped([0,4,7,11], baseNote, octave);
+  static maj7(baseNote){
+    return this.transposed([0,4,7,11], baseNote);
   }
 
-  static m7(baseNote, octave){
-    return mapped([0,3,7,10], baseNote, octave);
+  static min7(baseNote){
+    return this.transposed([0,3,7,10], baseNote);
 
   }
 
-  static m7b5(baseNote, octave){
-    return mapped([0,3,6,10], baseNote, octave);
+  static min7b5(baseNote){
+    return this.transposed([0,3,6,10], baseNote);
   }
 
-  static augmented(baseNote, octave){
-    return mapped([0,4,8], baseNote, octave);
+  static augmented(baseNote){
+    return this.transposed([0,4,8], baseNote);
   }
 }

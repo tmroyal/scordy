@@ -10,15 +10,12 @@ export default class Scale {
    * Convert scale degree to major scale note
    * 
    * @param {int} degree 
-   * @param {int} baseNote  default 0 for C
-   * @param {int} baseOctave default 4 for middle
+   * @param {int} baseNote  default 60 for C4
    */
-  static majorFromDegree(degree, baseNote, baseOctave){
-    baseNote = this.validate(baseNote) ? baseNote : 0;
-    baseOctave = this.validate(baseOctave) ? baseOctave : 4;
+  static majorFromDegree(degree, baseNote){
+    baseNote = this.validate(baseNote) ? baseNote : 60;
 
-    baseNote %= 12;
-    const scaleData = this.getScaleMember(degree, majorScale, baseOctave);
+    const scaleData = this.getScaleMember(degree, majorScale, baseNote);
 
     return scaleData.note + baseNote + scaleData.octaveOffset;
   }
@@ -28,26 +25,24 @@ export default class Scale {
    * 
    * @param degree 
    * @param baseNote 
-   * @param baseOctave 
    */
-  static minorFromDegree(degree, baseNote, baseOctave){
-    baseNote = this.validate(baseNote) ? baseNote : 0;
-    baseOctave = this.validate(baseOctave) ? baseOctave : 4;
+  static minorFromDegree(degree, baseNote){
+    baseNote = this.validate(baseNote) ? baseNote : 60;;
 
-    baseNote %= 12;
-
-    const scaleData = this.getScaleMember(degree, minorScale, baseOctave);
+    const scaleData = this.getScaleMember(degree, minorScale, baseNote);
 
     return scaleData.note + baseNote + scaleData.octaveOffset;
   }
 
   /**
-   * Get note and octave of passed in scale, degree, and octave 
-   * @param degree 
+   * Get note and octave of passed in scale, degree, and baseNote
    * @param scale 
-   * @param baseOctave 
+   * @param degree 
+   * @param baseNote 
    */
-  static getScaleMember(degree, scale, baseOctave){
+  static getScaleMember(scale, degree, baseNote){
+    let baseOctave = 0;
+
     while (degree < 0){
       degree += scale.length;
       baseOctave += 1;

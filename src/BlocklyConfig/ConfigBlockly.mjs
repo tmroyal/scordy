@@ -182,4 +182,93 @@ export default function ConfigBlocklyBlocks(Blockly){
     var code = `NumberGenerators.walk(${ value_input },${ value_step })`;
     return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
   };
+
+  /**
+   * MUSIC FUNCTIONS
+   * ================
+   */
+
+  /**
+   * Base note to chord
+   */
+  Blockly.Blocks['scor_to_chord'] = {
+    init: function() {
+      this.appendValueInput("NOTE")
+          .setCheck("Number")
+          .appendField("as chord")
+          .appendField(new Blockly.FieldDropdown([["Major","MAJOR"], ["Minor","MINOR"], ["Major 7th","MAJ7"], ["Minor 7th","MIN7"], ["Minor 7th flat 5","MIN7B5"], ["Augmented","AUGMENTED"]]), "TYPE");
+      this.setOutput(true, "Number");
+      this.setColour(30);
+      this.setTooltip("Turn a single note to a chord");
+      this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['scor_to_chord'] = function(block) {
+    var dropdown_type = block.getFieldValue('TYPE').toLowerCase();
+    var value_note = Blockly.JavaScript.valueToCode(block, 'NOTE', Blockly.JavaScript.ORDER_ATOMIC) || 60;
+    var code = `Chord.${ dropdown_type }( ${value_note} )`
+    return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+  };
+
+
+  /**
+   * Major scale
+   */
+  Blockly.Blocks['scor_scale'] = {
+    init: function() {
+      this.appendValueInput("DEGREE")
+          .setCheck("Number")
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField(new Blockly.FieldDropdown([["major","MAJOR"], ["minor","MINOR"]]), "TYPE")
+          .appendField("scale note number");
+      this.appendValueInput("BASE")
+          .setCheck("Number")
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField("base note");
+      this.setOutput(true, "Number");
+      this.setColour(230);
+      this.setTooltip("Major Scale");
+      this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['scor_scale'] = function(block) {
+    var dropdown_type = block.getFieldValue('TYPE').toLowerCase();
+    var value_degree = Blockly.JavaScript.valueToCode(block, 'DEGREE', Blockly.JavaScript.ORDER_ATOMIC) || 0;
+    var value_base = Blockly.JavaScript.valueToCode(block, 'BASE', Blockly.JavaScript.ORDER_ATOMIC) || 60;
+    var code = `Scale.${ dropdown_type }FromDegree(${ value_degree }, ${ value_base })`
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  /**
+   * Custom scale
+   */
+  Blockly.Blocks['scor_custom_scale'] = {
+    init: function() {
+      this.appendValueInput("SCALE")
+          .setCheck("Array")
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField("get from scale");
+      this.appendValueInput("DEGREE")
+          .setCheck("Number")
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField("note number");
+      this.appendValueInput("BASE")
+          .setCheck("Number")
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField("base note");
+      this.setOutput(true, "Number");
+      this.setColour(230);
+      this.setTooltip("Custom Scale");
+      this.setHelpUrl("");
+    }
+  };
+  Blockly.JavaScript['scor_custom_scale'] = function(block) {
+    var value_scale = Blockly.JavaScript.valueToCode(block, 'SCALE', Blockly.JavaScript.ORDER_ATOMIC) || '[0]';
+    var value_degree = Blockly.JavaScript.valueToCode(block, 'DEGREE', Blockly.JavaScript.ORDER_ATOMIC) || 0;
+    var value_base = Blockly.JavaScript.valueToCode(block, 'BASE', Blockly.JavaScript.ORDER_ATOMIC) || 60;
+    var code = `Scale.getScaleMember(${ value_scale }, ${ value_degree }, ${ value_base })`;
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
 }
