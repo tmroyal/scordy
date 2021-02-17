@@ -2,6 +2,7 @@ import SynthEngine from "./SynthEngine/SynthEngine.mjs"
 import Scheduler from "./SequencerEngine/Scheduler.mjs"
 import Blockly from 'blockly';
 import ConfigBlocklyBlocks from "./BlocklyConfig/ConfigBlockly.mjs"
+import Synth from "./SynthEngine/Synth.mjs";
 
 document.addEventListener("DOMContentLoaded", function(){
   ConfigBlocklyBlocks(Blockly);
@@ -13,31 +14,26 @@ document.addEventListener("DOMContentLoaded", function(){
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     document.getElementById('code').innerText = code;
   });
- 
 
-});
-/*
-function startAudio(){
   const scheduler = new Scheduler(SynthEngine);
+  window.scheduler = scheduler;
+  window.SynthEngine = SynthEngine;
 
   SynthEngine.init();
-  SynthEngine.setVolume(0.1);
+  SynthEngine.setVolume(0.6);
 
-  scheduler.setTempo(120);
-  scheduler.start();
+  function startAudio(){
 
-  const synth = SynthEngine.createSynth();
-  synth.setADSR(0.01, 0.1, 0.0, 0.0);
+    scheduler.setTempo(120);
+    scheduler.start();
 
-  const cb = (beat, time)=>{
-    const notes = [60, 62, 64, 65, 67, 68];
-    const curNote = notes[Math.floor(beat) % notes.length];
-    synth.play(curNote,0.5,0.1,time);
-    return 1/3.0;
-  };
+    try{
+      eval(Blockly.JavaScript.workspaceToCode(workspace));
+    } catch {
+      console.error("whoops");
+    }
+  }
+  document.getElementById("startAudio").addEventListener("click", startAudio);
 
-  scheduler.schedule(cb, 0);
-}
 
-document.getElementById("startAudio").addEventListener("click", startAudio);
-*/
+});

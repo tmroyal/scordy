@@ -7,7 +7,9 @@ export default function ConfigBlocklyBlocks(Blockly){
       this.appendStatementInput("NAME")
           .setCheck(null)
           .appendField("Every")
-          .appendField(new Blockly.FieldNumber(1, 1, Infinity, 0.25), "BEATS")
+          .appendField(new Blockly.FieldNumber(1, 1, null, 1), "NUM_BEATS")
+          .appendField("/")
+          .appendField(new Blockly.FieldDropdown([["1","1"], ["2", "2"], ["3","3"],["4","4"]]), "DENOM_BEATS")
           .appendField("beats");
       this.setColour(300);
       this.setTooltip("Statement input every N beats");
@@ -16,10 +18,12 @@ export default function ConfigBlocklyBlocks(Blockly){
   };
 
   Blockly.JavaScript['every_n_beats'] = function(block) {
-    var number_beats = block.getFieldValue('BEATS');
+    var numerator_beats = block.getFieldValue('NUM_BEATS');
+    var denom_beats = parseInt(block.getFieldValue('DENOM_BEATS'));
+    var num_beats = numerator_beats / denom_beats;
     var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
     var code = 
-      `Scheduler.scheduleRecurring((current_beat, current_time)=>{\n${statements_name}}, ${number_beats});`;
+      `scheduler.scheduleRecurring((current_beat, current_time)=>{\n${statements_name}}, ${num_beats});`;
     return code;
   };
 
@@ -146,7 +150,7 @@ export default function ConfigBlocklyBlocks(Blockly){
     var value_note = Blockly.JavaScript.valueToCode(block, 'NOTE', Blockly.JavaScript.ORDER_ATOMIC) || 60;
     var value_volume = Blockly.JavaScript.valueToCode(block, 'VOLUME', Blockly.JavaScript.ORDER_ATOMIC) || 0.5;
     var value_length = Blockly.JavaScript.valueToCode(block, 'LENGTH', Blockly.JavaScript.ORDER_ATOMIC) || 0.5;
-    var code = `SynthEngine.playSynth("${ dropdown_name }", ${ value_note }, ${ value_volume }, ${ value_length });\n`;
+    var code = `SynthEngine.playSynth("${ dropdown_name }", ${ value_note }, ${ value_volume }, ${ value_length }, current_time);\n`;
     return code;
   };
 

@@ -18,8 +18,8 @@ export default class SynthEngine {
     this.synths['SINE'] = new Synth(this);
   }
 
-  static playSynth(name, note, volume, duration){
-    this.synths[name].play(note, volume, duration);
+  static playSynth(name, note, volume, duration, start){
+    this.synths[name].play(note, volume, duration, start);
   }
 
   /**
