@@ -67,58 +67,6 @@ export default function ConfigBlocklyBlocks(Blockly){
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
 
-  Blockly.Blocks['rand_int'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("random integer between");
-      this.appendValueInput("LB")
-          .setCheck("Number");
-      this.appendValueInput("UB")
-          .setCheck("Number")
-          .appendField("and");
-      this.setInputsInline(true);
-      this.setOutput(true, "Number");
-      this.setColour(10);
-      this.setTooltip("Choose random number between lb and ub");
-      this.setHelpUrl("");
-    }
-  };
-
-  Blockly.JavaScript['rand_int'] = function(block) {
-    var value_lb = Blockly.JavaScript.valueToCode(block, 'LB', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_ub = Blockly.JavaScript.valueToCode(block, 'UB', Blockly.JavaScript.ORDER_ATOMIC);
-
-    var code = `NumberGenerators.randint(${value_lb}, ${value_ub});`;
-
-    return [code, Blockly.JavaScript.ORDER_NONE];
-  };
-
-  Blockly.Blocks['random'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("random number between");
-      this.appendValueInput("LB")
-          .setCheck("Number");
-      this.appendValueInput("UB")
-          .setCheck("Number")
-          .appendField("and");
-      this.setInputsInline(true);
-      this.setOutput(true, "Number");
-      this.setColour(10);
-      this.setTooltip("Choose random number between lb and ub");
-      this.setHelpUrl("");
-    }
-  };
-  
-  Blockly.JavaScript['random'] = function(block) {
-    var value_lb = Blockly.JavaScript.valueToCode(block, 'LB', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_ub = Blockly.JavaScript.valueToCode(block, 'UB', Blockly.JavaScript.ORDER_ATOMIC);
-
-    var code = `NumberGenerators.randint(${value_lb}, ${value_ub});`;
-
-    return [code, Blockly.JavaScript.ORDER_NONE];
-  };
-
   /**
    * Play Synth
    */
@@ -154,5 +102,84 @@ export default function ConfigBlocklyBlocks(Blockly){
     return code;
   };
 
-  // rewrite list index of to support 0 indexing
+  /**
+   * Number generators
+   * =================
+   */
+  
+  /**
+  * Choose from
+  */
+  Blockly.Blocks['scor_choose'] = {
+    init: function() {
+      this.appendValueInput("INPUT")
+          .setCheck("Array")
+          .appendField("Choose from");
+      this.setOutput(true, "Number");
+      this.setColour(150);
+      this.setTooltip("Choose from list");
+      this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['scor_choose'] = function(block) {
+    var value_name = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = `NumberGenerators.choose(${value_name})`;
+    return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+  };
+
+  /**
+   * Wrap
+   */
+  Blockly.Blocks['scor_wrap'] = {
+    init: function() {
+      this.appendValueInput("INPUT")
+          .setCheck("Number")
+          .appendField("wrap");
+      this.appendValueInput("LOW")
+          .setCheck("Number")
+          .appendField("low");
+      this.appendValueInput("HIGH")
+          .setCheck("Number")
+          .appendField("high");
+      this.setInputsInline(true);
+      this.setOutput(true, "Number");
+      this.setColour(240);
+      this.setTooltip("Wrap between two numbers");
+      this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['scor_wrap'] = function(block) {
+    var value_input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC) || 0;
+    var value_low = Blockly.JavaScript.valueToCode(block, 'LOW', Blockly.JavaScript.ORDER_ATOMIC) || 0;
+    var value_high = Blockly.JavaScript.valueToCode(block, 'HIGH', Blockly.JavaScript.ORDER_ATOMIC) || 1;
+    var code = `NumberGenerators.wrap(${value_input}, ${value_low}, ${value_high})`;
+    return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+  };
+
+  /**
+   * Random walk
+   */
+  Blockly.Blocks['scor_walk'] = {
+    init: function() {
+      this.appendValueInput("INPUT")
+          .setCheck("Number");
+      this.appendValueInput("STEP")
+          .setCheck("Number")
+          .appendField("randomly add by +/-");
+      this.setInputsInline(true);
+      this.setOutput(true, "Number");
+      this.setColour(240);
+      this.setTooltip("Change number randomly by step amount");
+      this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['scor_walk'] = function(block) {
+    var value_input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC) || 0;
+    var value_step = Blockly.JavaScript.valueToCode(block, 'STEP', Blockly.JavaScript.ORDER_ATOMIC) || 2;
+    var code = `NumberGenerators.walk(${ value_input },${ value_step })`;
+    return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+  };
 }
