@@ -1,14 +1,5 @@
 export class NumberGenerators {
 
-  static randint(lower, upper){
-    return Math.floor(this.randrange(lower, upper));
-  }
-
-  static randrange(lower, upper){
-    const range = upper - lower;
-    return Math.random()*range+lower;
-  }
-
   static choose(arr){
     return arr[this.randint(0, arr.length)];
   }
