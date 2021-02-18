@@ -18,6 +18,11 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById('code').innerText = code;
   });
 
+  // add tempo block
+  var configBlock = '<xml><block type="scor_tempo" deletable="false" movable="false"></block></xml>';
+  Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(configBlock), workspace);
+
+
   const scheduler = new Scheduler(SynthEngine);
   window.scheduler = scheduler;
   window.SynthEngine = SynthEngine;

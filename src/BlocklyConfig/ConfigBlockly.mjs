@@ -333,4 +333,23 @@ export default function ConfigBlocklyBlocks(Blockly){
     var code = (parseInt(number_octaves)+1)*12 + parseInt(value_input);
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
+
+
+  // tempo config block
+  Blockly.Blocks['scor_tempo'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("tempo =")
+          .appendField(new Blockly.FieldNumber(110, 20, 250, 1), "TEMPO")
+          .appendField("bpm");
+      this.setColour(230);
+      this.setTooltip("");
+      this.setHelpUrl("");
+    }
+  };
+  Blockly.JavaScript['scor_tempo'] = function(block) {
+    var number_name = block.getFieldValue('TEMPO');
+    var code = `scheduler.setTempo(${ number_name })`;
+    return code;
+  };
 }
