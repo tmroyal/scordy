@@ -5,9 +5,6 @@
  * @param Blockly 
  */
 export default function ConfigBlocklyBlocks(workspace, Blockly){
-  // add tempo block
-  var configBlock = '<xml><block type="scor_tempo" deletable="false" movable="false"></block></xml>';
-  Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(configBlock), workspace);
 
   /**
    * every n beats, custom retrigger
@@ -393,4 +390,8 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
     var code = `scheduler.setTempo(${ number_name })`;
     return code;
   };
+
+  // add tempo block
+  var configBlock = '<xml><block type="scor_tempo" deletable="false" movable="false"></block></xml>';
+  Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(configBlock), workspace);
 }
