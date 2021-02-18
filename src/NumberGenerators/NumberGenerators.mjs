@@ -1,4 +1,14 @@
 export default class NumberGenerators {
+  /**
+   * Choose int in range
+   * 
+   * @param {low} low number - inclusive
+   * @param {high} high number - exclusive
+   */
+  static randint(low, high){
+    const range = high - low;
+    return Math.floor(Math.random()*range+low);
+  }
 
   /**
    * Choose random element from arr
