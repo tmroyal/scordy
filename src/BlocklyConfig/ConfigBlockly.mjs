@@ -109,7 +109,7 @@ export default function ConfigBlocklyBlocks(Blockly){
           .appendField("Play Sound")
           .appendField(new Blockly.FieldDropdown([["Sine","SINE"], ["Saw","SAW"]]), "NAME");
       this.appendValueInput("NOTE")
-          .setCheck("Number")
+          .setCheck(["Number", "Array"])
           .appendField("Note");
       this.appendValueInput("VOLUME")
           .setCheck("Number")
@@ -361,7 +361,6 @@ export default function ConfigBlocklyBlocks(Blockly){
   Blockly.JavaScript['scor_at_octave'] = function(block) {
     var number_octaves = block.getFieldValue('OCTAVES') || '4';
     var value_input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC) || '0'
-    console.log(value_input);
     
     var code = (parseInt(number_octaves)+1)*12 + parseInt(value_input);
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
