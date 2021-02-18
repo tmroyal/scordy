@@ -271,4 +271,66 @@ export default function ConfigBlocklyBlocks(Blockly){
     var code = `Scale.getScaleMember(${ value_scale }, ${ value_degree }, ${ value_base })`;
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
+
+
+  /**
+   * Note block
+   */
+
+  Blockly.Blocks['scor_note'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("note")
+          .appendField(new Blockly.FieldDropdown([["C","C"], ["D","D"], ["E","E"], ["F","F"], ["G","G"], ["A","A"], ["B","B"]]), "NAME")
+          .appendField(new Blockly.FieldDropdown([["♮","NATURAL"], ["♭","FLAT"], ["♯","SHARP"]]), "MODIFIER");
+      this.setOutput(true, "Number");
+      this.setColour(230);
+      this.setTooltip("");
+      this.setHelpUrl("");
+    }
+  };
+
+  var notes = {
+    C: 0, D: 2, E: 4, F: 5, G:7, A:9, B: 11
+  };
+  var modifiers = {
+    SHARP: 1, 
+    FLAT: -1,
+    NATURAL: 0
+  }
+
+  Blockly.JavaScript['scor_note'] = function(block) {
+    var dropdown_name = block.getFieldValue('NAME');
+    var dropdown_modifier = block.getFieldValue('MODIFIER');
+
+
+    var code = `${ notes[dropdown_name] + modifiers[dropdown_modifier]}`
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  };
+
+
+  /**
+   * At octave
+   */
+  Blockly.Blocks['scor_at_octave'] = {
+    init: function() {
+      this.appendValueInput("INPUT")
+          .setCheck("Number")
+          .appendField("at octave")
+          .appendField(new Blockly.FieldNumber(4, -2, 8, 1), "OCTAVES");
+      this.setOutput(true, "Number");
+      this.setColour(230);
+      this.setTooltip("Puts the incoming note at the specified octave. 4 is the middle.");
+      this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['scor_at_octave'] = function(block) {
+    var number_octaves = block.getFieldValue('OCTAVES') || '4';
+    var value_input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC) || '0'
+    console.log(value_input);
+    
+    var code = (parseInt(number_octaves)+1)*12 + parseInt(value_input);
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  };
 }
