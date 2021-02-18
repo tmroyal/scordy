@@ -5,7 +5,9 @@
  * @param Blockly 
  */
 export default function ConfigBlocklyBlocks(workspace, Blockly){
-
+  /**
+   * Set hue and saturation
+   */
   /**
    * every n beats, custom retrigger
    */
@@ -19,7 +21,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
       this.appendValueInput("RETURN_DUR")
           .setCheck("Number")
           .appendField("and retrigger every");
-      this.setColour(230);
+      this.setColour(0);
       this.setTooltip("Allows for custom re-trigger times");
       this.setHelpUrl("");
     }
@@ -50,7 +52,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
           .appendField("/")
           .appendField(new Blockly.FieldDropdown([["1","1"], ["2", "2"], ["3","3"],["4","4"]]), "DENOM_BEATS")
           .appendField("beats");
-      this.setColour(300);
+      this.setColour(0);
       this.setTooltip("Statement input every N beats");
       this.setHelpUrl("");
     }
@@ -75,7 +77,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
       this.appendDummyInput()
           .appendField("current beat");
       this.setOutput(true, "Number");
-      this.setColour(300);
+      this.setColour(0);
       this.setTooltip("Return current beat");
       this.setHelpUrl("");
     }
@@ -94,7 +96,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
       this.appendDummyInput()
           .appendField("current time");
       this.setOutput(true, "Number");
-      this.setColour(300);
+      this.setColour(0);
       this.setTooltip("return current time in seconds");
       this.setHelpUrl("");
     }
@@ -123,7 +125,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
           .setCheck("Number")
           .appendField("Length");
       this.setInputsInline(false);
-      this.setColour(230);
+      this.setColour(60);
       this.setTooltip("Play Synth");
       this.setHelpUrl("");
       this.setPreviousStatement(true, null);
@@ -154,7 +156,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
           .setCheck("Array")
           .appendField("Choose from");
       this.setOutput(true, "Number");
-      this.setColour(150);
+      this.setColour('%{BKY_MATH_HUE}');
       this.setTooltip("Choose from list");
       this.setHelpUrl("");
     }
@@ -236,7 +238,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
           .appendField("as chord")
           .appendField(new Blockly.FieldDropdown([["Major","MAJOR"], ["Minor","MINOR"], ["Major 7th","MAJ7"], ["Minor 7th","MIN7"], ["Minor 7th flat 5","MIN7B5"], ["Augmented","AUGMENTED"]]), "TYPE");
       this.setOutput(true, "Number");
-      this.setColour(30);
+      this.setColour(120);
       this.setTooltip("Turn a single note to a chord");
       this.setHelpUrl("");
     }
@@ -265,7 +267,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
           .setAlign(Blockly.ALIGN_RIGHT)
           .appendField("base note");
       this.setOutput(true, "Number");
-      this.setColour(230);
+      this.setColour(120);
       this.setTooltip("Major Scale");
       this.setHelpUrl("");
     }
@@ -297,7 +299,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
           .setAlign(Blockly.ALIGN_RIGHT)
           .appendField("base note");
       this.setOutput(true, "Number");
-      this.setColour(230);
+      this.setColour(120);
       this.setTooltip("Custom Scale");
       this.setHelpUrl("");
     }
@@ -322,7 +324,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
           .appendField(new Blockly.FieldDropdown([["C","C"], ["D","D"], ["E","E"], ["F","F"], ["G","G"], ["A","A"], ["B","B"]]), "NAME")
           .appendField(new Blockly.FieldDropdown([["♮","NATURAL"], ["♭","FLAT"], ["♯","SHARP"]]), "MODIFIER");
       this.setOutput(true, "Number");
-      this.setColour(230);
+      this.setColour(120);
       this.setTooltip("");
       this.setHelpUrl("");
     }
@@ -357,7 +359,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
           .appendField("at octave")
           .appendField(new Blockly.FieldNumber(4, -2, 8, 1), "OCTAVES");
       this.setOutput(true, "Number");
-      this.setColour(230);
+      this.setColour(120);
       this.setTooltip("Puts the incoming note at the specified octave. 4 is the middle.");
       this.setHelpUrl("");
     }
@@ -379,7 +381,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
           .appendField("tempo =")
           .appendField(new Blockly.FieldNumber(110, 20, 250, 1), "TEMPO")
           .appendField("bpm");
-      this.setColour(230);
+      this.setColour(0);
       this.setTooltip("Set tempo");
       this.setHelpUrl("");
     }

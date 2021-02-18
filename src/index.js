@@ -1,14 +1,21 @@
 import SynthEngine from "./SynthEngine/SynthEngine.mjs"
 import Scheduler from "./SequencerEngine/Scheduler.mjs"
-import Blockly from 'blockly';
+import Blockly, { Block } from 'blockly';
 import ConfigBlocklyBlocks from "./BlocklyConfig/ConfigBlockly.mjs"
 
 // run this on load
 document.addEventListener("DOMContentLoaded", function(){
+  window.onbeforeunload = function() {
+    return true;
+  };
+
+
 
   // setup Blockly
   const workspace = Blockly.inject('blockly',
     {toolbox: document.getElementById('toolbox')}); 
+
+  workspace.setTheme(Blockly.Themes.Dark);
 
   workspace.addChangeListener(()=>{
     var code = Blockly.JavaScript.workspaceToCode(workspace);
