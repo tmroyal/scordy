@@ -1,3 +1,9 @@
+/**
+ * This method takes Blockly as an argument
+ * and decorates it with the custom blocks for
+ * scordare 
+ * @param Blockly 
+ */
 export default function ConfigBlocklyBlocks(Blockly){
   /**
    * every n beats, custom retrigger
@@ -36,7 +42,7 @@ export default function ConfigBlocklyBlocks(Blockly){
           .appendField("After delay")
           .appendField(new Blockly.FieldNumber(0, 0, null, 1/6.0), "DELAY")
           .appendField("trigger");
-      this.appendStatementInput("NAME")
+      this.appendStatementInput("STATEMENTS")
           .setCheck(null)
           .appendField("every")
           .appendField(new Blockly.FieldNumber(1, 1, null, 1), "NUM_BEATS")
@@ -54,9 +60,9 @@ export default function ConfigBlocklyBlocks(Blockly){
     var denom_beats = parseInt(block.getFieldValue('DENOM_BEATS'));
     var delay = block.getFieldValue('DELAY') || 0;
     var num_beats = numerator_beats / denom_beats;
-    var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+    var statements_statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
     var code = 
-      `scheduler.scheduleRecurring((current_beat, current_time)=>{\n${statements_name}}, ${num_beats}, ${delay});`;
+      `scheduler.scheduleRecurring((current_beat, current_time)=>{\n${statements_statements}}, ${num_beats}, ${delay});`;
     return code;
   };
 
@@ -69,15 +75,14 @@ export default function ConfigBlocklyBlocks(Blockly){
           .appendField("current beat");
       this.setOutput(true, "Number");
       this.setColour(300);
-      this.setTooltip("");
+      this.setTooltip("Return current beat");
       this.setHelpUrl("");
     }
   };
 
   Blockly.JavaScript['current_beat'] = function(block) {
     var code = 'current_beat';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code+" + 1", Blockly.JavaScript.ADDITION];
+    return [code+" + 1", Blockly.JavaScript.ORDER_ATOMIC];
   };
 
   /**
@@ -89,15 +94,14 @@ export default function ConfigBlocklyBlocks(Blockly){
           .appendField("current time");
       this.setOutput(true, "Number");
       this.setColour(300);
-      this.setTooltip("");
+      this.setTooltip("return current time in seconds");
       this.setHelpUrl("");
     }
   };
 
   Blockly.JavaScript['current_time'] = function(block) {
     var code = 'current_time';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
   /**
@@ -375,7 +379,7 @@ export default function ConfigBlocklyBlocks(Blockly){
           .appendField(new Blockly.FieldNumber(110, 20, 250, 1), "TEMPO")
           .appendField("bpm");
       this.setColour(230);
-      this.setTooltip("");
+      this.setTooltip("Set tempo");
       this.setHelpUrl("");
     }
   };
