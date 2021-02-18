@@ -1,4 +1,4 @@
-export class NumberGenerators {
+export default class NumberGenerators {
 
   /**
    * Choose random element from arr
