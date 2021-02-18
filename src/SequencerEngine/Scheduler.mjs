@@ -136,14 +136,6 @@ export default class Scheduler {
   }
 
   /**
-   * pauses the scheduler
-   */
-  // not implemented yet, need to figure out how to reset the time
-  // pause(){
-  //   this.running = false;
-  // }
-
-  /**
    * stops the scheduler, which includes reseting the beat
    * and clearing all subscriptions
    */
