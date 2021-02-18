@@ -18,6 +18,16 @@ export default class SynthEngine {
     this.synths['SINE'] = new Synth(this);
   }
 
+  /**
+   * Play synth with given name according to paramters given
+   *  
+   * @param {String} name - name of synth
+   * @param {int} note - midi note number
+   * @param {float} volume - volume (0-1)
+   * @param {float} duration - duration in seconds
+   * @param {float} start - start time, determined by the scheduler
+   *    using the audioContext from WebAudio API
+   */
   static playSynth(name, note, volume, duration, start){
     this.synths[name].play(note, volume, duration, start);
   }
