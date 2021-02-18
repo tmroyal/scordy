@@ -44,7 +44,13 @@ document.addEventListener("DOMContentLoaded", function(){
       console.error("whoops");
     }
   }
+
+  function stopAudio(){
+    scheduler.stop();
+  }
+
   document.getElementById("startAudio").addEventListener("click", startAudio);
+  document.getElementById("stopAudio").addEventListener("click", stopAudio);
 
 
 });
