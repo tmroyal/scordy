@@ -39,7 +39,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
   /**
    * every n beats
    */
-  Blockly.Blocks['every_n_beats'] = {
+  Blockly.Blocks['scor_every_n_beats'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("After delay")
@@ -58,7 +58,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
     }
   };
 
-  Blockly.JavaScript['every_n_beats'] = function(block) {
+  Blockly.JavaScript['scor_every_n_beats'] = function(block) {
     var numerator_beats = block.getFieldValue('NUM_BEATS');
     var denom_beats = parseInt(block.getFieldValue('DENOM_BEATS'));
     var delay = block.getFieldValue('DELAY') || 0;
@@ -72,7 +72,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
   /**
    * Current beat
    */
-  Blockly.Blocks['current_beat'] = {
+  Blockly.Blocks['scor_current_beat'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("current beat");
@@ -83,7 +83,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
     }
   };
 
-  Blockly.JavaScript['current_beat'] = function(block) {
+  Blockly.JavaScript['scor_current_beat'] = function(block) {
     var code = 'current_beat';
     return [code+" + 1", Blockly.JavaScript.ORDER_ATOMIC];
   };
@@ -91,7 +91,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
   /**
    * Current time
    */
-  Blockly.Blocks['current_time'] = {
+  Blockly.Blocks['scor_current_time'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("current time");
@@ -102,7 +102,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
     }
   };
 
-  Blockly.JavaScript['current_time'] = function(block) {
+  Blockly.JavaScript['scor_current_time'] = function(block) {
     var code = 'current_time';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
@@ -110,7 +110,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
   /**
    * Play Synth
    */
-  Blockly.Blocks['play_synth'] = {
+  Blockly.Blocks['scor_play_synth'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("Play Sound")
@@ -133,7 +133,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
     }
   };
 
-  Blockly.JavaScript['play_synth'] = function(block) {
+  Blockly.JavaScript['scor_play_synth'] = function(block) {
     var dropdown_name = block.getFieldValue('NAME');
     var value_note = Blockly.JavaScript.valueToCode(block, 'NOTE', Blockly.JavaScript.ORDER_ATOMIC) || 60;
     var value_volume = Blockly.JavaScript.valueToCode(block, 'VOLUME', Blockly.JavaScript.ORDER_ATOMIC) || 0.5;
