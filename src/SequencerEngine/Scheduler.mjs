@@ -93,6 +93,7 @@ export default class Scheduler {
    */
   consumeEvent(event){
     const scheduleTime = this.beatToTime(event.atBeat);
+    // call the function, return the time to schedule next
     const atBeat = event.f(event.atBeat, scheduleTime);
 
     if (atBeat){ // discard events that return 0 or nothing

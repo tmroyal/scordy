@@ -1,12 +1,44 @@
 export default function ConfigBlocklyBlocks(Blockly){
   /**
+   * every n beats, custom retrigger
+   */
+  Blockly.Blocks['scor_recur_func'] = {
+    init: function() {
+      this.appendStatementInput("STATEMENTS")
+          .setCheck(null)
+          .appendField("After delay")
+          .appendField(new Blockly.FieldNumber(0, 0, Infinity, 1), "DELAY")
+          .appendField("do");
+      this.appendValueInput("RETURN_DUR")
+          .setCheck("Number")
+          .appendField("and retrigger every");
+      this.setColour(230);
+      this.setTooltip("Allows for custom re-trigger times");
+      this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['scor_recur_func'] = function(block) {
+    var number_delay = block.getFieldValue('DELAY') || '0';
+    var statements_statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+    var value_return_dur = Blockly.JavaScript.valueToCode(block, 'RETURN_DUR', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = 
+      `scheduler.schedule((current_beat, current_time)=>{\n${ statements_statements }\n  return ${ value_return_dur };\n}, ${ number_delay });`;
+    return code;
+  };
+
+  /**
    * every n beats
    */
   Blockly.Blocks['every_n_beats'] = {
     init: function() {
+      this.appendDummyInput()
+          .appendField("After delay")
+          .appendField(new Blockly.FieldNumber(0, 0, null, 1/6.0), "DELAY")
+          .appendField("trigger");
       this.appendStatementInput("NAME")
           .setCheck(null)
-          .appendField("Every")
+          .appendField("every")
           .appendField(new Blockly.FieldNumber(1, 1, null, 1), "NUM_BEATS")
           .appendField("/")
           .appendField(new Blockly.FieldDropdown([["1","1"], ["2", "2"], ["3","3"],["4","4"]]), "DENOM_BEATS")
@@ -20,10 +52,11 @@ export default function ConfigBlocklyBlocks(Blockly){
   Blockly.JavaScript['every_n_beats'] = function(block) {
     var numerator_beats = block.getFieldValue('NUM_BEATS');
     var denom_beats = parseInt(block.getFieldValue('DENOM_BEATS'));
+    var delay = block.getFieldValue('DELAY') || 0;
     var num_beats = numerator_beats / denom_beats;
     var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
     var code = 
-      `scheduler.scheduleRecurring((current_beat, current_time)=>{\n${statements_name}}, ${num_beats});`;
+      `scheduler.scheduleRecurring((current_beat, current_time)=>{\n${statements_name}}, ${num_beats}, ${delay});`;
     return code;
   };
 
@@ -347,6 +380,7 @@ export default function ConfigBlocklyBlocks(Blockly){
       this.setHelpUrl("");
     }
   };
+
   Blockly.JavaScript['scor_tempo'] = function(block) {
     var number_name = block.getFieldValue('TEMPO');
     var code = `scheduler.setTempo(${ number_name })`;
