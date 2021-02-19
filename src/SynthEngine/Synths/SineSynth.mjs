@@ -1,5 +1,5 @@
-import Synth from "../Synth.mjs";
-import SynthUtil from "../SynthUtil.mjs"
+import Synth from "./Synth.mjs";
+import SynthUtil from "./SynthUtil.mjs"
 
 const REL_PADDING = 50;
 

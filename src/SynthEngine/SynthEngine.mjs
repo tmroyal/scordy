@@ -1,4 +1,3 @@
-//import Synth from "./Synth.mjs";
 import SineSynth from "./Synths/SineSynth.mjs"
 
 export default class SynthEngine {

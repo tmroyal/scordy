@@ -1,4 +1,3 @@
-import Synth from "./SynthEngine/Synth.mjs";
 import Chord from "./MusicalFunctions/Chord.mjs"
 import Scale from "./MusicalFunctions/Scale.mjs"
 import NumberGenerators from "./NumberGenerators/NumberGenerators.mjs";
