@@ -1,4 +1,5 @@
-import Synth from "./Synth.mjs";
+//import Synth from "./Synth.mjs";
+import SineSynth from "./Synths/SineSynth.mjs"
 
 export default class SynthEngine {
   constructor(){
@@ -15,7 +16,7 @@ export default class SynthEngine {
     this.gainNode.connect(this.audioContext.destination);
     this.synths = {};
 
-    this.synths['SINE'] = new Synth(this);
+    this.synths['SINE'] = new SineSynth(this);
   }
 
   /**

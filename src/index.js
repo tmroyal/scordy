@@ -2,6 +2,7 @@ import SynthEngine from "./SynthEngine/SynthEngine.mjs"
 import Scheduler from "./SequencerEngine/Scheduler.mjs"
 import Blockly, { Block } from 'blockly';
 import ConfigBlocklyBlocks from "./BlocklyConfig/ConfigBlockly.mjs"
+import setupWindowScope from "./setupWindowScope"
 
 // run this on load
 document.addEventListener("DOMContentLoaded", function(){
@@ -30,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function(){
   // Setup synth engine
   SynthEngine.init();
   SynthEngine.setVolume(0.6);
+
+  setupWindowScope(SynthEngine, scheduler);
 
   /**
    * Setup events for start and stop button
