@@ -1,10 +1,11 @@
 import Synth from "./Synth.mjs"
 import SynthUtil from "./SynthUtil.mjs"
 
-export class Saw extends Synth {
+class FilteredSynth extends Synth {
   constructor(engine){
     super(engine);
     this.attack = 0.1;
+    this.osc = 'sine';
   }
 
   /**
@@ -32,7 +33,7 @@ export class Saw extends Synth {
       filt.Q.value = 1.0;
       this.setEnvelope(freq*2, freq*10, dur, filt.frequency, start);
 
-      osc.type = 'sawtooth';
+      osc.type = this.osc;
       osc.frequency.value = freq;
 
       osc.connect(filt).connect(ampenv).connect(this.engine.gainNode);
@@ -70,4 +71,25 @@ export class Saw extends Synth {
     value.linearRampToValueAtTime(base, time);
   }
 
+}
+
+export class Saw extends FilteredSynth {
+  constructor(engine){
+    super(engine);
+    this.osc = "sawtooth";
+  }
+}
+
+export class Tri extends FilteredSynth {
+  constructor(engine){
+    super(engine);
+    this.osc = "triangle";
+  }
+}
+
+export class Square extends FilteredSynth {
+  constructor(engine){
+    super(engine);
+    this.osc = "square";
+  }
 }

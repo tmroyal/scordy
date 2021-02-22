@@ -1,5 +1,5 @@
 import SineSynth from "./Synths/SineSynth.mjs"
-import { Saw } from "./Synths/FilteredSynths.mjs"
+import { Saw, Tri, Square } from "./Synths/FilteredSynths.mjs"
 
 export default class SynthEngine {
   constructor(){
@@ -18,6 +18,8 @@ export default class SynthEngine {
 
     this.synths['SINE'] = new SineSynth(this);
     this.synths['SAW'] = new Saw(this);
+    this.synths['TRI'] = new Tri(this);
+    this.synths['SQUARE'] = new Square(this);
   }
 
   /**
