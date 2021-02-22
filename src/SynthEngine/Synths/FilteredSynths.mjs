@@ -6,6 +6,7 @@ class FilteredSynth extends Synth {
     super(engine);
     this.attack = 0.1;
     this.osc = 'sine';
+    this.freq_mult = 10;
   }
 
   /**
@@ -31,7 +32,7 @@ class FilteredSynth extends Synth {
       // setup filter
       filt.type = 'lowpass';
       filt.Q.value = 1.0;
-      this.setEnvelope(freq*2, freq*10, dur, filt.frequency, start);
+      this.setEnvelope(freq*2, freq*this.freq_mult, dur, filt.frequency, start);
 
       osc.type = this.osc;
       osc.frequency.value = freq;
@@ -92,4 +93,14 @@ export class Square extends FilteredSynth {
     super(engine);
     this.osc = "square";
   }
+}
+
+export class Bass1 extends FilteredSynth {
+  constructor(engine){
+    super(engine);
+    this.osc = "sawtooth";
+    this.freq_mult = 3;
+    this.attack = 0.01;
+  }
+
 }
