@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById('code').innerText = code;
   });
 
-  ConfigBlocklyBlocks(workspace, Blockly);
 
   // setup scheduler
   const scheduler = new Scheduler(SynthEngine);
@@ -31,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function(){
   // Setup synth engine
   SynthEngine.init();
   SynthEngine.setVolume(0.6);
+
+  ConfigBlocklyBlocks(workspace, Blockly, SynthEngine);
 
   setupWindowScope(SynthEngine, scheduler);
 

@@ -4,10 +4,7 @@
  * scordare 
  * @param Blockly 
  */
-export default function ConfigBlocklyBlocks(workspace, Blockly){
-  /**
-   * Set hue and saturation
-   */
+export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
   /**
    * every n beats, custom retrigger
    */
@@ -108,13 +105,21 @@ export default function ConfigBlocklyBlocks(workspace, Blockly){
   };
 
   /**
+   * create a list of synth names for play_synth block
+   */
+
+  const synths = Object.keys(SynthEngine.synths).map((key)=>{
+    return [key.toLowerCase(), key.toUpperCase()];
+  });
+
+  /**
    * Play Synth
    */
   Blockly.Blocks['scor_play_synth'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("Play Sound")
-          .appendField(new Blockly.FieldDropdown([["Sine","SINE"], ["Saw","SAW"]]), "NAME");
+          .appendField(new Blockly.FieldDropdown(synths), "NAME");
       this.appendValueInput("NOTE")
           .setCheck(["Number", "Array"])
           .appendField("Note");
