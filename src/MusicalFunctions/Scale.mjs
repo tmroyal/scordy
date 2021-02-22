@@ -44,7 +44,7 @@ export default class Scale {
    * @param degree 
    * @param baseNote 
    */
-  static getScaleMember(scale, degree, baseNote){
+  static getScaleMember(degree, scale, baseNote){
     let baseOctave = 0;
 
     while (degree < 0){
