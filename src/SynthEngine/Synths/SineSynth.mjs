@@ -1,7 +1,6 @@
 import Synth from "./Synth.mjs";
 import SynthUtil from "./SynthUtil.mjs"
 
-const REL_PADDING = 50;
 
 export default class SineSynth extends Synth {
   constructor(engine){
@@ -32,7 +31,7 @@ export default class SineSynth extends Synth {
 
       this.setEnvelope(volume, dur, env, start);
       osc.start(start);
-      osc.stop(start+dur+this.release+REL_PADDING);
+      osc.stop(start+dur+this.release);
 
       osc.onended = ()=>{
         env.disconnect();
