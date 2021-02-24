@@ -5,7 +5,7 @@ export default class Organ extends Synth {
   constructor(engine){ 
     super(engine); 
     this.wave = this.setupWave();
-    this.setADSR(0.1, 0, 1.0, 0.1);
+    this.setADSR(0.009, 0, 1.0, 0.1);
   }
 
   setupWave(){
