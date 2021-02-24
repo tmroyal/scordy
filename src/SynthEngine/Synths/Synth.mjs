@@ -54,8 +54,6 @@ export default class Synth {
    * @param {float} start - start time
    */
   setADSREnvelope(volume, dur, val, start){
-    console.log(this.attack, this.decay, this.sustain, this.release);
-    console.log(volume, dur, val, start);
     let time = start;
 
     val.setValueAtTime(0.0, start);
