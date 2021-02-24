@@ -24,8 +24,10 @@ export default class SynthEngine {
     this.synths['SQUARE'] = new Square(this);
     this.synths['BASS1'] = new Bass1(this);
 
-    this.synths['FM1'] = new FMSynth(this, 4.0);
-    this.synths['FM2'] = new FMSynth(this, 12.0);
+    if (FMSynth.supported(this)){
+      this.synths['FM1'] = new FMSynth(this, 4.0);
+      this.synths['FM2'] = new FMSynth(this, 12.0);
+    }
 
     this.synths['ORGAN'] = new Organ(this);
   }

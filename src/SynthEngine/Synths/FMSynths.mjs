@@ -10,6 +10,10 @@ export default class FMSynth extends Synth {
     this.attack = 0.01;
   }
 
+  static supported(engine){
+    return 'audioWorklet' in engine.audioContext;
+  }
+
   play(note, volume, dur, start){
     if (Array.isArray(note)){
       note.forEach((theNote)=>{
@@ -17,32 +21,7 @@ export default class FMSynth extends Synth {
       })
     } else {
       var freq = SynthUtil.midicps(note);
-      var car = this.engine.audioContext.createOscillator();
-      var carGain = this.engine.audioContext.createGain();
-      var mod = this.engine.audioContext.createOscillator();
-      var modGain = this.engine.audioContext.createGain();
-    
-      mod.frequency.value = freq*this.ind;
-      modGain.gain.value = freq;
-      car.frequency.value = freq;
 
-      //setEnvelope(base, peak, dur, value, start){
-      this.setEnvelope(0, freq, dur, modGain.gain, start);
-      this.setEnvelope(0, volume, dur, carGain.gain, start);
-    
-      mod.connect(modGain).connect(car.detune);
-      car.connect(carGain).connect(this.engine.gainNode);
-    
-      car.start(start);
-      mod.start(start);
-
-      car.stop(start+dur);
-      mod.stop(start+dur);
-
-      car.onended = function(){
-        carGain.disconnect();
-        modGain.disconnect();
-      }
     }
   }
 }
