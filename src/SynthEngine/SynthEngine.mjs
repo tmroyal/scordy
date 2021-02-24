@@ -1,6 +1,7 @@
 import SineSynth from "./Synths/SineSynth.mjs"
 import { Saw, Tri, Square, Bass1 } from "./Synths/FilteredSynths.mjs"
 import FMSynth from "./Synths/FMSynths.mjs"
+import Organ from "./Synths/Organ.mjs"
 
 export default class SynthEngine {
   constructor(){
@@ -25,6 +26,8 @@ export default class SynthEngine {
 
     this.synths['FM1'] = new FMSynth(this, 4.0);
     this.synths['FM2'] = new FMSynth(this, 12.0);
+
+    this.synths['ORGAN'] = new Organ(this);
   }
 
   /**
