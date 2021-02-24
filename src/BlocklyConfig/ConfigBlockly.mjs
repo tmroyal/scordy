@@ -82,7 +82,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
 
   Blockly.JavaScript['scor_current_beat'] = function(block) {
     var code = 'current_beat';
-    return [code+" + 1", Blockly.JavaScript.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
   /**
