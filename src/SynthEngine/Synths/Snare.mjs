@@ -58,6 +58,7 @@ export default class Snare extends Synth {
 
     noise.onended = ()=>{
       noiseEnv.disconnect();
+      filt.disconnect();
       oscEnv.disconnect();
     };
   }
