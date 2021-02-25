@@ -4,6 +4,7 @@ import Organ from "./Synths/Organ.mjs"
 import Cowbell from "./Synths/Cowbell.mjs"
 import Hihat from "./Synths/Hihat.mjs"
 import Snare from "./Synths/Snare.mjs"
+import Kick from "./Synths/Kick.mjs"
 
 export default class SynthEngine {
   constructor(){
@@ -27,9 +28,11 @@ export default class SynthEngine {
     this.synths['BASS1'] = new Bass1(this);
 
     this.synths['ORGAN'] = new Organ(this);
+
     this.synths['COWBELL'] = new Cowbell(this);
     this.synths['HIHAT'] = new Hihat(this);
     this.synths['SNARE'] = new Snare(this);
+    this.synths['KICK'] = new Kick(this);
   }
 
   /**
