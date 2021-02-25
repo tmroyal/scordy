@@ -1,6 +1,12 @@
 import NumberGenerators from '../src/NumberGenerators/NumberGenerators.mjs'
 var expect = require('chai').expect;
 
+/**
+ * These tests are for scordare's number generators.
+ * Some of them may fail randomly because they are based off of 
+ * random number generators. Randomness is hard to test.
+ */
+
 describe('Number Generators', ()=>{
   const min = -3;
   const max = 4;
@@ -43,7 +49,20 @@ describe('Number Generators', ()=>{
 
       expect(eq).to.be.true;
     });
+  }); // describe("randint");
 
-  })
+  describe('choose', ()=>{
+    it('should eventually choose all elements from list', ()=>{
+      let theList = [0, 1, 2, 3, 4];
+      let chosenValues = new Set();
+
+      for (var i = 0; i < 20; i++){
+        chosenValues.add(NumberGenerators.choose(theList));
+        if (chosenValues.size == theList.length){ break; }
+      }
+      expect(Array.from(chosenValues)).to.have.same.members(theList);
+
+    });
+  });
 
 })
