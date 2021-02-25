@@ -1,5 +1,5 @@
 import NumberGenerators from '../src/NumberGenerators/NumberGenerators.mjs'
-var assert = require('assert');
+var expect = require('chai').expect;
 
 describe('Number Generators', ()=>{
   describe('randint', ()=>{
@@ -15,7 +15,7 @@ describe('Number Generators', ()=>{
           break;
         }
       }
-      assert(matches);
+      expect(matches).to.be.true;
     });
 
   })
