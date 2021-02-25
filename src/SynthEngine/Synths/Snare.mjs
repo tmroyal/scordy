@@ -33,6 +33,8 @@ export default class Snare extends Synth {
     if (Array.isArray(note)){
       note = note[0];
     }  
+    let pitchHeight = note/128.0;
+
     let noise = this.engine.audioContext.createBufferSource();
     noise.buffer = this.noiseBuffer;
     let noiseEnv = this.engine.audioContext.createGain();
@@ -47,8 +49,8 @@ export default class Snare extends Synth {
     filt.frequency.value = 1000;
     filt.Q.value = 0.5;
 
-    osc.frequency.setValueAtTime(300, start);
-    osc.frequency.linearRampToValueAtTime(120,start+0.05);
+    osc.frequency.setValueAtTime(note*300+150, start);
+    osc.frequency.linearRampToValueAtTime(note*120+60,start+0.05);
 
     osc.connect(oscEnv).connect(this.engine.gainNode);
     noise.connect(noiseEnv).connect(this.engine.gainNode);
