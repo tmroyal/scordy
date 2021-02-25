@@ -108,4 +108,64 @@ describe('Number Generators', ()=>{
 
   });
 
+  describe('step', ()=>{
+    const EPSILON = 0.01;
+    const step = 2.0;
+    const input = 1;
+
+    it('should probably output only numbers between walk-step and walk+step',()=>{
+      let within = true;
+      for (var i = 0; i < 50; i++){
+        let value = NumberGenerators.walk(input, step);
+        if (!((value <= input+step) && (value >= input - step))){
+          within = false;
+          break;
+        }
+      }
+      expect(within).to.be.true;
+    });
+
+    it('should eventualy output the same number', ()=>{
+      let same = false;
+      
+      for (var i = 0; i < 50; i++){
+        let value = NumberGenerators.walk(input, step);
+        if (value === input){
+          same = true;
+          break;
+        }
+      }
+      expect(same).to.be.true;
+    });
+
+    it('should eventually ouput the max step', ()=>{
+      let maxed = false;
+
+      for (var i = 0; i < 50; i++){
+        let value = NumberGenerators.walk(input, step);
+        if (value === input + step){
+          maxed = true;
+          break;
+        }
+      }
+
+      expect(maxed).to.be.true;
+    });
+
+    it('should eventually ouput the min step', ()=>{
+      let minned = false;
+
+      for (var i = 0; i < 50; i++){
+        let value = NumberGenerators.walk(input, step);
+        if (value === input - step){
+          minned = true;
+          break;
+        }
+      }
+
+      expect(minned).to.be.true;
+
+    });
+
+  });
 });
