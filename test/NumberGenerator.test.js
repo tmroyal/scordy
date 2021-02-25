@@ -56,7 +56,7 @@ describe('Number Generators', ()=>{
       let theList = [0, 1, 2, 3, 4];
       let chosenValues = new Set();
 
-      for (var i = 0; i < 20; i++){
+      for (var i = 0; i < 50; i++){
         chosenValues.add(NumberGenerators.choose(theList));
         if (chosenValues.size == theList.length){ break; }
       }
@@ -65,4 +65,47 @@ describe('Number Generators', ()=>{
     });
   });
 
-})
+  describe('wrap', ()=>{
+    it('should equal top of range', ()=>{
+      var result = NumberGenerators.wrap(3, -2, 4);
+      expect(result).to.equal(3);
+    });
+
+    it('should wrap to bottom if at top of range', ()=>{
+      var result = NumberGenerators.wrap(4, -2, 4);
+      expect(result).to.equal(-2);
+    });
+
+    it('should wrap to bottom+1 if one above range', ()=>{
+      var result = NumberGenerators.wrap(5, -2, 4);
+      expect(result).to.equal(-1);
+    });
+
+    it('should wrap to bottom if over range twice', ()=>{
+      var result = NumberGenerators.wrap(10, -2, 4);
+      expect(result).to.equal(-2);
+    })
+
+    it('should equal bottom when at bottom of the range', ()=>{
+      var result = NumberGenerators.wrap(-2, -2, 4);
+      expect(result).to.equal(-2);
+    });
+
+    it('should equal top of range when one below bottom of range', ()=>{
+      var result = NumberGenerators.wrap(-3, -2, 4);
+      expect(result).to.equal(3);
+    });
+
+    it('should equal one below top of range when two below bottom of range', ()=>{
+      var result = NumberGenerators.wrap(-4, -2, 4);
+      expect(result).to.equal(2);
+    });
+
+    it('should equal top of range when twice below the bottom of range', ()=>{
+      var result = NumberGenerators.wrap(-9, -2, 4);
+      expect(result).to.equal(3);
+    })
+
+  });
+
+});
