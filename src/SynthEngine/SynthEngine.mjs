@@ -3,6 +3,7 @@ import { Saw, Tri, Square, Bass1 } from "./Synths/FilteredSynths.mjs"
 import Organ from "./Synths/Organ.mjs"
 import Cowbell from "./Synths/Cowbell.mjs"
 import Hihat from "./Synths/Hihat.mjs"
+import Snare from "./Synths/Snare.mjs"
 
 export default class SynthEngine {
   constructor(){
@@ -28,6 +29,7 @@ export default class SynthEngine {
     this.synths['ORGAN'] = new Organ(this);
     this.synths['COWBELL'] = new Cowbell(this);
     this.synths['HIHAT'] = new Hihat(this);
+    this.synths['SNARE'] = new Snare(this);
   }
 
   /**
