@@ -6,7 +6,7 @@ export default class NumberGenerators {
    * @param {high} high number - exclusive
    */
   static randint(low, high){
-    const range = high - low;
+    const range = 1 + high - low;
     return Math.floor(Math.random()*range+low);
   }
 
