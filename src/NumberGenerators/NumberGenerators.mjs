@@ -28,8 +28,14 @@ export default class NumberGenerators {
    * @param {int} high 
    */
   static wrap(input, low, high){
-    const range = high - low;
-    return (input - low) % range + low
+    const n = input + - low;
+    const k = high + - low;
+    return this._mod(n, k) + low;
+  }
+
+  // https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers
+  static _mod(n, k){
+    return ((n%k)+k)%k;
   }
 
   /**
