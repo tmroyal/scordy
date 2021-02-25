@@ -2,6 +2,7 @@ import SineSynth from "./Synths/SineSynth.mjs"
 import { Saw, Tri, Square, Bass1 } from "./Synths/FilteredSynths.mjs"
 import Organ from "./Synths/Organ.mjs"
 import Cowbell from "./Synths/Cowbell.mjs"
+import Hihat from "./Synths/Hihat.mjs"
 
 export default class SynthEngine {
   constructor(){
@@ -26,6 +27,7 @@ export default class SynthEngine {
 
     this.synths['ORGAN'] = new Organ(this);
     this.synths['COWBELL'] = new Cowbell(this);
+    this.synths['HIHAT'] = new Hihat(this);
   }
 
   /**
