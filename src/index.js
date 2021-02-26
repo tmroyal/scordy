@@ -3,6 +3,7 @@ import Scheduler from "./SequencerEngine/Scheduler.mjs"
 import Blockly, { Block } from 'blockly';
 import ConfigBlocklyBlocks from "./BlocklyConfig/ConfigBlockly.mjs"
 import setupWindowScope from "./setupWindowScope"
+import Visualizer from "./Visualizer/Visualizer.mjs"
 
 // run this on load
 document.addEventListener("DOMContentLoaded", function(){
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function(){
     return true;
   };
 
-
+  const visualizer = new Visualizer();
 
   // setup Blockly
   const workspace = Blockly.inject('blockly',
@@ -22,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function(){
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     document.getElementById('code').innerText = code;
   });
-
 
   // setup scheduler
   const scheduler = new Scheduler(SynthEngine);
