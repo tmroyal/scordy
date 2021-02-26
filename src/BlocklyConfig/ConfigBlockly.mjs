@@ -398,7 +398,29 @@ export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
     return code;
   };
 
+  /* Console.log */
+  Blockly.Blocks['scr_console_log'] = {
+    init: function() {
+      this.appendValueInput("INPUT")
+          .setCheck(null)
+          .appendField("console.log");
+      this.appendDummyInput()
+          .appendField("(see browser console)");
+      this.setInputsInline(false);
+      this.setColour(230);
+      this.setTooltip("Prints to developer tools");
+      this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['scr_console_log'] = function(block) {
+    var value_input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = `console.log(${value_input});\n`;
+    return code;
+  };
+
   // add tempo block
   var configBlock = '<xml><block type="scor_tempo" deletable="false" movable="false"></block></xml>';
   Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(configBlock), workspace);
+
 }
