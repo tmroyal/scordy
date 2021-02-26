@@ -24,6 +24,7 @@ export default class Scale {
     return scaleData.note + baseNote + scaleData.octaveOffset;
   }
 
+
   /**
    * Convert scale degree to minor scale note
    * 
@@ -34,6 +35,14 @@ export default class Scale {
     baseNote = this.validate(baseNote) ? baseNote : 60;;
 
     const scaleData = this.getScaleMember(degree, minorScale, baseNote);
+
+    return scaleData.note + baseNote + scaleData.octaveOffset;
+  }
+
+  static customFromDegree(scale, degree, baseNote){
+    baseNote = this.validate(baseNote) ? baseNote : 60;
+
+    const scaleData = this.getScaleMember(degree, scale, baseNote);
 
     return scaleData.note + baseNote + scaleData.octaveOffset;
   }
@@ -49,12 +58,12 @@ export default class Scale {
 
     while (degree < 0){
       degree += scale.length;
-      baseOctave += 1;
+      baseOctave -= 1;
     }
 
     while (degree >= scale.length){
       degree -= scale.length;
-      baseOctave -= 1;
+      baseOctave += 1;
     }
 
     return {

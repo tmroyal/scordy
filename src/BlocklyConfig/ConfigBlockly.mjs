@@ -313,7 +313,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
     var value_scale = Blockly.JavaScript.valueToCode(block, 'SCALE', Blockly.JavaScript.ORDER_ATOMIC) || '[0]';
     var value_degree = Blockly.JavaScript.valueToCode(block, 'DEGREE', Blockly.JavaScript.ORDER_ATOMIC) || 0;
     var value_base = Blockly.JavaScript.valueToCode(block, 'BASE', Blockly.JavaScript.ORDER_ATOMIC) || 60;
-    var code = `Scale.getScaleMember(${ value_scale }, ${ value_degree }, ${ value_base })`;
+    var code = `Scale.customFromDegree(${ value_scale }, ${ value_degree }, ${ value_base })`;
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
 
