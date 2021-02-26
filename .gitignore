@@ -1,3 +1,4 @@
 node_modules
-dist
+dist/main.js
+dist/sandbox.html
 .DS_Store

@@ -1,0 +1,82 @@
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  background: rgb(66, 66, 73);
+  color: white;
+  padding-left: 2em;
+}
+
+a, a:visited {
+  color: rgb(205, 205, 224);
+}
+
+a:hover, a:focus {
+  color: rgb(121, 121, 121);
+}
+
+button.action {
+  background-repeat: no-repeat;
+  background-color: rgb(91, 165, 91);
+  background-size: 100%;
+  border-top: 1px solid rgb(144, 206, 144);
+  border-left: 1px solid rgb(178, 223, 170);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.301);
+  width: 32px;
+  height: 32px;
+}
+
+button.action:hover {
+  background-color: rgb(162, 230, 162);
+}
+
+#startAudio {
+  background-image: url(startButtonSmall.png);
+  background-position: -3px 0px;
+}
+
+#showCode {
+  background-image: url(viewSourceSmall.png);
+  background-position: 0 -2px;
+}
+
+#stopAudio {
+  background-image: url(stopButtonSmall.png);
+  background-position: -1px -1px;
+}
+
+/* Flexbox definitions */
+
+h1 {
+  color: rgb(230, 230, 230);
+  margin-top: 1.0em;
+  margin-bottom: 0;
+  letter-spacing: 0.05em;
+}
+
+
+#head {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 1px rgba(173, 216, 230, 0.432) solid;
+}
+
+#head p{
+  margin-bottom: 0.3em;
+  margin-left: 0.5em;
+}
+
+#head a {
+  margin-left: 0.4em;
+}
+
+#button_panel {
+  padding: 0.5em 0;
+}
+
+/* block and viz styles */
+
+#block_viz_panel {
+  display: flex;
+  margin-bottom: 0.5em;
+}

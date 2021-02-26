@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scordare, a block sequencer</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="scor.css">
+</head>
+<body>
+
+  <div id="head">
+    <h1>scordare</h1>
+    <p>
+      <a href="" title="What this is an how to use it">Video Tutorial</a>
+      <a href="" title="Github link">View Source</a>
+      <a href="" title="Browse saved scordare scores">Browse</a>
+    </p>
+  </div>
+
+  <div id="blockly_cont">
+    <div id="button_panel">
+      <button id="startAudio" title="Play" class="action"></button>
+      <button id="stopAudio" title="Stop" class="action"></button>
+      <button id="showCode" title="Show Code" class="action"></button>
+    </div>
+    <div id="block_viz_panel">
+      <div id="blockly" style="height: 480px; width: 800px;"></div>
+      <div id="visualizer">Visualizer goes here</div>
+    </div>
+  </div>
+
+
+  <div id="contact">Contact</div>
+
+  <div><pre><code id="code"></code></pre></div>
+  <div>Video</div>
+
+
+  <xml id="toolbox" style="display: none">
+    <category name="Triggering" colour="0">
+      <block type="scor_every_n_beats" colour="0"></block>
+      <block type="scor_recur_func"></block>
+      <block type="scor_current_beat"></block>
+      <block type="scor_current_time"></block>
+    </category>
+    <category name="Play Sound" colour="60">
+      <block type="scor_play_synth"></block>
+    </category>
+    <category name="Music Functions" colour="120">
+      <block type="scor_to_chord""></block>
+      <block type="scor_scale"></block>
+      <block type="scor_custom_scale"></block>
+      <block type="scor_note"></block>
+      <block type="scor_at_octave"></block>
+    </category>
+    <category name="Logic" colour="%{BKY_LOGIC_HUE}"/>
+
+      <block type="controls_if"></block>
+      <block type="controls_ifelse"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+    </category>
+    <category name="Math" colour="%{BKY_MATH_HUE}">
+      <block type="math_number"></block>
+      <block type="math_constrain"></block>
+      <block type="scor_wrap"></block>
+      <block type="scor_walk"></block>
+      <block type="math_modulo"></block>
+      <block type="math_arithmetic"></block>
+      <block type="math_single"></block>
+      <block type="math_trig"></block>
+      <block type="math_constant"></block>
+      <block type="math_number_property"></block>
+      <block type="math_change"></block>
+      <block type="math_round"></block>
+      <block type="math_on_list"></block>
+      <block type="math_atan2"></block>
+    </category>
+    <category name="Random" colour="%{BKY_MATH_HUE}">
+      <block type="math_random_int"></block>
+      <block type="math_random_float"></block>
+      <block type="scor_choose"></block>
+    </category>
+    <category name="Looping" colour="%{BKY_LOOPS_HUE}">
+      <block type="controls_repeat_ext"></block>
+      <block type="controls_for"></block>
+      <block type="controls_forEach"></block>
+    </category>
+    <category name="Functions" colour="%{BKY_PROCEDURES_HUE}">
+      <block type="procedures_defreturn"></block>
+      <block type="procedures_callnoreturn"></block>
+      <block type="procedures_defnoreturn"></block>
+      <block type="procedures_callreturn"></block>
+    </category>
+    <category name="Lists" colour="%{BKY_LISTS_HUE}">
+      <block type="lists_create_with"></block>
+      <block type="lists_getIndex"></block>
+    </category>
+    <category name="Debug" colour="%{BKY_VARIABLES_HUE}">
+      <block type="scr_console_log"></block>
+    </category>
+    <category name="Variables" colour="%{BKY_VARIABLES_HUE}">
+      <block type="variables_get"></block>
+      <block type="variables_set"></block>
+    </category>
+  </xml>
+
+  <script src="main.js"></script>
+</body>
+</html>
