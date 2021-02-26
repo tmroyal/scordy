@@ -19,7 +19,7 @@ export default class Scale {
   static majorFromDegree(degree, baseNote){
     baseNote = this.validate(baseNote) ? baseNote : 60;
 
-    const scaleData = this.getScaleMember(degree, majorScale, baseNote);
+    const scaleData = this._getScaleMember(degree, majorScale, baseNote);
 
     return scaleData.note + baseNote + scaleData.octaveOffset;
   }
@@ -34,15 +34,22 @@ export default class Scale {
   static minorFromDegree(degree, baseNote){
     baseNote = this.validate(baseNote) ? baseNote : 60;;
 
-    const scaleData = this.getScaleMember(degree, minorScale, baseNote);
+    const scaleData = this._getScaleMember(degree, minorScale, baseNote);
 
     return scaleData.note + baseNote + scaleData.octaveOffset;
   }
 
+  /**
+   * Custom scale 
+   * 
+   * @param {array} scale - pcsets for custom scale, generally values between 0 and 11
+   * @param degree - the degree
+   * @param baseNote - the base note
+   */
   static customFromDegree(scale, degree, baseNote){
     baseNote = this.validate(baseNote) ? baseNote : 60;
 
-    const scaleData = this.getScaleMember(degree, scale, baseNote);
+    const scaleData = this._getScaleMember(degree, scale, baseNote);
 
     return scaleData.note + baseNote + scaleData.octaveOffset;
   }
@@ -53,7 +60,7 @@ export default class Scale {
    * @param degree 
    * @param baseNote 
    */
-  static getScaleMember(degree, scale, baseNote){
+  static _getScaleMember(degree, scale, baseNote){
     let baseOctave = 0;
 
     while (degree < 0){
