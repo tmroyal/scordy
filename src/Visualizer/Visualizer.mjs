@@ -31,6 +31,7 @@ export default class Visualizer{
     return (p)=>{
       p.setup = ()=>{
         p.createCanvas(400,480);
+        p.rectMode(p.CENTER);
       };
 
       p.draw = ()=>{

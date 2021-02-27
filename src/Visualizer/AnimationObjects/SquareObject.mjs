@@ -6,6 +6,11 @@ export default class SquareObject extends AnimationObject {
   constructor(params, width, height, delay){
     super(params, width, height, delay);
     this.speed = 120.0;
+    this.omega = (params.volume || 1.0) * 3 * Math.PI * (1.0 + Math.random()*0.1);
+    this.theta = Math.random() * 2 * Math.PI;
+    if (Math.random() < 0.5){
+      this.omega *= -1.0;
+    }
   }
 
   /**
@@ -26,8 +31,14 @@ export default class SquareObject extends AnimationObject {
           baseRadius*(1.0-this.ellapsed/this.lifetime) : 0;
       radius += 5;
 
-      p.rect(this.x, this.y, radius, radius);
+      p.push();
+        p.translate(this.x, this.y);
+        p.rotate(this.theta);
+        p.rect(0, 0, radius, radius);
+      p.pop();
+
       this.y += this.speed*dt;
+      this.theta += this.omega*dt;
     }
   }
 
