@@ -1,4 +1,4 @@
-const baseRadius = 18;
+const baseRadius = 14;
 
 export default class AnimationObject {
   constructor(params, width, height, delay){
