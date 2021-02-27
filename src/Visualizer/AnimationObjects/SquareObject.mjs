@@ -23,13 +23,9 @@ export default class SquareObject extends AnimationObject {
   draw(p, dt){
     super.draw(p, dt);
 
-    p.noStroke();
-    p.fill(p.color(`hsla(${this.hue}, 30%, 50%, 0.9)`));
 
     if (this.ellapsed >= 0){
-      let radius = (this.ellapsed <= this.lifetime) ?
-          baseRadius*(1.0-this.ellapsed/this.lifetime) : 0;
-      radius += 5;
+      let radius = this.shrinkingRadius();
 
       p.push();
         p.translate(this.x, this.y);

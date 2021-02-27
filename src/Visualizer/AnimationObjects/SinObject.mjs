@@ -17,9 +17,6 @@ export default class SinObject extends AnimationObject {
   draw(p, dt){
     super.draw(p, dt);
 
-    p.noStroke();
-    p.fill(p.color(`hsla(${this.hue}, 30%, 50%, 0.9)`));
-
     if (this.ellapsed >= 0){
       let radius = this.shrinkingRadius();
 

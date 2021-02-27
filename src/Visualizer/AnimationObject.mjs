@@ -1,3 +1,5 @@
+const baseRadius = 18;
+
 export default class AnimationObject {
   constructor(params, width, height, delay){
     // the lifetime of the object in seconds
@@ -41,6 +43,9 @@ export default class AnimationObject {
    */
   draw(p, dt, aoc){
     this.ellapsed += dt;
+
+    p.noStroke();
+    p.fill(p.color(`hsla(${this.hue}, 30%, 50%, 0.9)`));
   }
 
   /**
@@ -50,5 +55,12 @@ export default class AnimationObject {
    */
   finished(p){
     return this.ellapsed >= this.lifetime; 
+  }
+
+  shrinkingRadius(){
+    let radius = (this.ellapsed <= this.lifetime) ?
+        baseRadius*(1.0-this.ellapsed/this.lifetime) : 0;
+    radius += 5;
+    return radius;
   }
 }
