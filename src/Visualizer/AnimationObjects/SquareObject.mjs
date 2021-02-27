@@ -14,6 +14,10 @@ export default class SquareObject extends RotatingObject {
    */
   draw(p, dt){
     let radius = this.shrinkingRadius();
+
+    p.noStroke();
+    p.fill(this.getColor(p));
+
     super.draw(p, dt, (r)=>{
       p.rect(0, 0, radius, radius);
     });

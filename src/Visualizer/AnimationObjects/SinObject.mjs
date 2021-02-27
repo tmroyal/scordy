@@ -18,6 +18,9 @@ export default class SinObject extends AnimationObject {
     if (this.ellapsed >= 0){
       let radius = this.shrinkingRadius();
 
+      p.noStroke();
+      p.fill(this.getColor(p));
+
       p.ellipse(this.x, this.y, radius, radius);
       this.y += this.speed*dt;
     }

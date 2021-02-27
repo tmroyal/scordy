@@ -1,16 +1,17 @@
 import SinObject from "./AnimationObjects/SinObject.mjs"
 import SquareObject from "./AnimationObjects/SquareObject.mjs"
 import TriangleObject from "./AnimationObjects/TriangleObject.mjs"
+import SawObject from "./AnimationObjects/SawObject.mjs"
 
 export default class AnimationObjectCollection {
   constructor(params){ 
     this.animationObjects = {
       "sine": SinObject,
       "square": SquareObject,
-      "tri": TriangleObject
+      "tri": TriangleObject,
+      "saw": SawObject
     };
   
-    // create all of the animation objects
   }
 
   spawn(objectName, params, width, height, delay){

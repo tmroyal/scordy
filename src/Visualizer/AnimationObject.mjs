@@ -51,9 +51,10 @@ export default class AnimationObject {
   draw(p, dt, aoc){
     this.ellapsed += dt;
 
-    p.noStroke();
-    p.fill(p.color(`hsla(${this.hue}, 30%, 50%, 0.9)`));
+  }
 
+  getColor(p){
+    return p.color(`hsla(${this.hue}, 30%, 50%, 0.9)`); 
   }
 
   rotated(p, cb){

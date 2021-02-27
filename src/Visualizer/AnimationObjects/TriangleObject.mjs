@@ -19,6 +19,9 @@ export default class SquareObject extends RotatingObject {
     let r_2 = radius/2;
     let r_sq2_2 = r_2*SQRT2;
 
+    p.noStroke();
+    p.fill(this.getColor(p));
+
     super.draw(p, dt, ()=>{
       p.triangle(0, radius, r_sq2_2, -r_2, -r_sq2_2, -r_2);
     });
