@@ -1,6 +1,5 @@
 import AnimationObject from '../AnimationObject.mjs'
 
-const baseRadius = 18;
 
 export default class SinObject extends AnimationObject {
   constructor(params, width, height, delay){
@@ -22,9 +21,7 @@ export default class SinObject extends AnimationObject {
     p.fill(p.color(`hsla(${this.hue}, 30%, 50%, 0.9)`));
 
     if (this.ellapsed >= 0){
-      let radius = (this.ellapsed <= this.lifetime) ?
-          baseRadius*(1.0-this.ellapsed/this.lifetime) : 0;
-      radius += 5;
+      let radius = this.shrinkingRadius();
 
       p.ellipse(this.x, this.y, radius, radius);
       this.y += this.speed*dt;
