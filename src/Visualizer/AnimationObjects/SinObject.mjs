@@ -1,10 +1,8 @@
 import AnimationObject from '../AnimationObject.mjs'
 
-
 export default class SinObject extends AnimationObject {
   constructor(params, width, height, delay){
     super(params, width, height, delay);
-    this.speed = 120.0;
   }
 
   /**
@@ -25,8 +23,4 @@ export default class SinObject extends AnimationObject {
     }
   }
 
-  finished(p){
-    // sinobject finished when at bottom
-    this.y >= p.height; 
-  }
 }

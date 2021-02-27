@@ -10,6 +10,13 @@ export default class AnimationObject {
     this.x = this.mapPitch(width, params.note);
     this.hue = this.mapHue(params.note);
     this.y = 30;
+
+    this.speed = 120.0;
+    this.omega = (params.volume || 1.0) * 3 * Math.PI * (1.0 + Math.random()*0.1);
+    this.theta = Math.random() * 2 * Math.PI;
+    if (Math.random() < 0.5){
+      this.omega *= -1.0;
+    }
   }
 
   /**
@@ -58,12 +65,11 @@ export default class AnimationObject {
   }
 
   /**
-   * returns whether the object has existed for longer 
-   * than it's lifetime
+   * returns whether the object has exited
    * @param p the processing context
    */
   finished(p){
-    return this.ellapsed >= this.lifetime; 
+    this.y >= p.height; 
   }
 
   shrinkingRadius(){
