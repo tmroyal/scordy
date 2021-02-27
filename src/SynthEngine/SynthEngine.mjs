@@ -50,7 +50,7 @@ export default class SynthEngine {
   static playSynth(name, note, volume, duration, start){
     this.synths[name].play(note, volume, duration, start);
 
-    this.visualizer.spawn(name, {
+    this.visualizer.spawn(name.toLowerCase(), {
       note: note,
       volume: volume, 
       duration: duration,

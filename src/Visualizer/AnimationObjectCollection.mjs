@@ -1,16 +1,20 @@
 import SinObject from "./AnimationObjects/SinObject.mjs"
+import SquareObject from "./AnimationObjects/SquareObject.mjs"
 
 export default class AnimationObjectCollection {
   constructor(params){ 
     this.animationObjects = {
-      "sine": SinObject
+      "sine": SinObject,
+      "square": SquareObject
     };
   
     // create all of the animation objects
   }
 
   spawn(objectName, params, width, height, delay){
-    return new this.animationObjects["sine"](params, width, height, delay);
-    // for now, always spawn sin object
+    if (!(objectName in this.animationObjects)){
+      objectName = "sine";
+    }
+    return new this.animationObjects[objectName](params, width, height, delay);
   }
 };
