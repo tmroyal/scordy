@@ -5,12 +5,6 @@ const baseRadius = 18;
 export default class SquareObject extends AnimationObject {
   constructor(params, width, height, delay){
     super(params, width, height, delay);
-    this.speed = 120.0;
-    this.omega = (params.volume || 1.0) * 3 * Math.PI * (1.0 + Math.random()*0.1);
-    this.theta = Math.random() * 2 * Math.PI;
-    if (Math.random() < 0.5){
-      this.omega *= -1.0;
-    }
   }
 
   /**
@@ -35,8 +29,4 @@ export default class SquareObject extends AnimationObject {
     }
   }
 
-  finished(p){
-    // sinobject finished when at bottom
-    this.y >= p.height; 
-  }
 }
