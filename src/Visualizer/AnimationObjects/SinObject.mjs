@@ -4,7 +4,7 @@ export default class SinObject extends AnimationObject {
   constructor(params, delay){
     super(params, delay);
     this.speed = 120.0;
-    this.y = 20;
+    this.y = 0;
   }
 
   /**

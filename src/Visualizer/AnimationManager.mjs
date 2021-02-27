@@ -31,6 +31,15 @@ export default class AnimationManager {
    * @param {float} delay in seconds 
    */
   spawn(objectName, params, delay){
-    this.objects.push(this.aoc.spawn(objectName, params, delay));
+    if (Array.isArray(params.note)){
+      params.note.forEach(note=>{
+        let itParams = Object.assign({}, params);
+        itParams.note = note;
+        this.objects.push(this.aoc.spawn(objectName, itParams, delay));
+
+      });
+    } else {
+      this.objects.push(this.aoc.spawn(objectName, params, delay));
+    }
   }
 };
