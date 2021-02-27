@@ -7,22 +7,12 @@ import Visualizer from "./Visualizer/Visualizer.mjs"
 
 // run this on load
 document.addEventListener("DOMContentLoaded", function(){
-  window.onbeforeunload = function() {
-    return true;
-  };
 
   const visualizer = new Visualizer();
 
   // setup Blockly
   const workspace = Blockly.inject('blockly',
     {toolbox: document.getElementById('toolbox')}); 
-
-  workspace.setTheme(Blockly.Themes.Dark);
-
-  workspace.addChangeListener(()=>{
-    var code = Blockly.JavaScript.workspaceToCode(workspace);
-    document.getElementById('code').innerText = code;
-  });
 
   // setup scheduler
   const scheduler = new Scheduler(SynthEngine);
@@ -33,6 +23,31 @@ document.addEventListener("DOMContentLoaded", function(){
   visualizer.setAudioContext(SynthEngine.audioContext);
 
   ConfigBlocklyBlocks(workspace, Blockly, SynthEngine);
+
+  workspace.setTheme(Blockly.Themes.Dark);
+
+  // get previously stored script, if it exists
+  (()=>{
+    var xml_text = window.localStorage.getItem('currentScript');
+    console.log(xml_text);
+    if (xml_text){
+      var xml = Blockly.Xml.textToDom(xml_text);
+      Blockly.Xml.domToWorkspace(xml, workspace);
+    } else {
+      // add tempo block
+      var configBlock = '<xml><block type="scor_tempo" deletable="false" movable="false"></block></xml>';
+      Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(configBlock), workspace);
+    }
+  })();
+
+  workspace.addChangeListener(()=>{
+    var xml = Blockly.Xml.workspaceToDom(workspace);
+    var xml_text = Blockly.Xml.domToText(xml);
+    window.localStorage.setItem('currentScript', xml_text);
+    var code = Blockly.JavaScript.workspaceToCode(workspace);
+    document.getElementById('code').innerText = code;
+
+  });
 
   setupWindowScope(SynthEngine, scheduler);
 
