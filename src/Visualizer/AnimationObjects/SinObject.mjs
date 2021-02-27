@@ -6,7 +6,6 @@ export default class SinObject extends AnimationObject {
   constructor(params, width, height, delay){
     super(params, width, height, delay);
     this.speed = 120.0;
-    this.y = 0;
   }
 
   /**
@@ -20,6 +19,7 @@ export default class SinObject extends AnimationObject {
     super.draw(p, dt);
 
     p.noStroke();
+    p.fill(p.color(`hsla(${this.hue}, 30%, 50%, 0.9)`));
 
     if (this.ellapsed >= 0){
       let radius = (this.ellapsed <= this.lifetime) ?

@@ -6,8 +6,20 @@ export default class AnimationObject {
     this.lifetime = this.params.duration || 1.0;
     this.ellapsed = -delay;
     this.x = this.mapPitch(width, params.note);
+    this.hue = this.mapHue(params.note);
+    this.y = 30;
   }
 
+  /**
+   * Maps midi notes to hue. 7ths are closer than thirds are closer than half
+   * steps
+   *  
+   * @param midi 
+   */
+  mapHue(midi){
+    return Math.floor(255 * ((midi%12*7+7) % 12 / 12));
+  }
+  
   /**
    * Maps incoming pitches to the width of a processing sketch
    * using a logistical function to give convincing spread
@@ -16,7 +28,7 @@ export default class AnimationObject {
    * @param midi midi note 0-127
    */
   mapPitch(width, midi){
-    let i = midi/127.0;
+    let i = 1/(1+Math.exp(-0.06*(midi-60)));
     return i*width;
   }
 
