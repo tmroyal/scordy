@@ -1,8 +1,6 @@
-import AnimationObject from '../AnimationObject.mjs'
+import RotatingObject from './RotatingObject.mjs'
 
-const baseRadius = 18;
-
-export default class SquareObject extends AnimationObject {
+export default class SquareObject extends RotatingObject {
   constructor(params, width, height, delay){
     super(params, width, height, delay);
   }
@@ -15,18 +13,10 @@ export default class SquareObject extends AnimationObject {
    * @param dt delta time in seconds
    */
   draw(p, dt){
-    super.draw(p, dt);
-
-    if (this.ellapsed >= 0){
-      let radius = this.shrinkingRadius();
-
-      this.rotated(p, ()=>{
-        p.rect(0, 0, radius, radius);
-      });
-
-      this.y += this.speed*dt;
-      this.theta += this.omega*dt;
-    }
+    let radius = this.shrinkingRadius();
+    super.draw(p, dt, (r)=>{
+      p.rect(0, 0, radius, radius);
+    });
   }
 
 }
