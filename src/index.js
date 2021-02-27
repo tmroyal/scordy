@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function(){
   // get previously stored script, if it exists
   (()=>{
     var xml_text = window.localStorage.getItem('currentScript');
-    console.log(xml_text);
     if (xml_text){
       var xml = Blockly.Xml.textToDom(xml_text);
       Blockly.Xml.domToWorkspace(xml, workspace);
