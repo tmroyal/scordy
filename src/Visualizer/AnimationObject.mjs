@@ -46,6 +46,15 @@ export default class AnimationObject {
 
     p.noStroke();
     p.fill(p.color(`hsla(${this.hue}, 30%, 50%, 0.9)`));
+
+  }
+
+  rotated(p, cb){
+    p.push();
+      p.translate(this.x, this.y);
+      p.rotate(this.theta || 0.0);
+      cb();
+    p.pop();
   }
 
   /**

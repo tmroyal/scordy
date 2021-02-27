@@ -23,15 +23,12 @@ export default class SquareObject extends AnimationObject {
   draw(p, dt){
     super.draw(p, dt);
 
-
     if (this.ellapsed >= 0){
       let radius = this.shrinkingRadius();
 
-      p.push();
-        p.translate(this.x, this.y);
-        p.rotate(this.theta);
+      this.rotated(p, ()=>{
         p.rect(0, 0, radius, radius);
-      p.pop();
+      });
 
       this.y += this.speed*dt;
       this.theta += this.omega*dt;
