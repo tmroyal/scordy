@@ -38,7 +38,6 @@ export default class Hihat extends Synth {
     this.allpass.Q.value = 0.5;
 
     parts.forEach( (params) => {
-      console.log(params[0])
       const bpf = this.engine.audioContext.createBiquadFilter();
       bpf.frequency.value = params[0];
       bpf.type = "bandpass";
