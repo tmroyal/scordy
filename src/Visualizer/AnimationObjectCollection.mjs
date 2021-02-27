@@ -9,8 +9,8 @@ export default class AnimationObjectCollection {
     // create all of the animation objects
   }
 
-  spawn(objectName, params, delay){
-    return new this.animationObjects["sine"](params, delay);
+  spawn(objectName, params, width, height, delay){
+    return new this.animationObjects["sine"](params, width, height, delay);
     // for now, always spawn sin object
   }
 };

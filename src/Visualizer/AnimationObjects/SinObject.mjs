@@ -1,8 +1,10 @@
 import AnimationObject from '../AnimationObject.mjs'
 
+const baseRadius = 18;
+
 export default class SinObject extends AnimationObject {
-  constructor(params, delay){
-    super(params, delay);
+  constructor(params, width, height, delay){
+    super(params, width, height, delay);
     this.speed = 120.0;
     this.y = 0;
   }
@@ -17,11 +19,15 @@ export default class SinObject extends AnimationObject {
   draw(p, dt){
     super.draw(p, dt);
 
+    p.noStroke();
+
     if (this.ellapsed >= 0){
-      let x = super.mapPitch(p, this.params.note);
-      let y = this.y;
+      let radius = (this.ellapsed <= this.lifetime) ?
+          baseRadius*(1.0-this.ellapsed/this.lifetime) : 0;
+      radius += 5;
+
+      p.ellipse(this.x, this.y, radius, radius);
       this.y += this.speed*dt;
-      p.ellipse(x, y, 10, 10);
     }
   }
 

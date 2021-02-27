@@ -1,9 +1,8 @@
 import p5 from 'p5';
 import AnimationManager from './AnimationManager.mjs'
 
-/**
- * The processing instance
- */
+const WIDTH = 400;
+const HEIGHT = 480;
 
 export default class Visualizer{
   constructor(){
@@ -12,7 +11,7 @@ export default class Visualizer{
     this.p5 = new p5(this.sketch, this.element);
     this.size = 10;
 
-    this.animationManager = new AnimationManager();
+    this.animationManager = new AnimationManager(WIDTH, HEIGHT);
     this.active = true;
   }
 
@@ -51,7 +50,6 @@ export default class Visualizer{
       return 0;
     } else {
       let delay = params.start - this.audioContext.currentTime;
-      console.log(delay);
 
       if (delay > 0){
         return delay;

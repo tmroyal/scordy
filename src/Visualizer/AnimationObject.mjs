@@ -1,23 +1,23 @@
 export default class AnimationObject {
-  constructor(params, delay){
+  constructor(params, width, height, delay){
     // the lifetime of the object in seconds
     // obtained from params object
     this.params = params
     this.lifetime = this.params.duration || 1.0;
     this.ellapsed = -delay;
+    this.x = this.mapPitch(width, params.note);
   }
 
   /**
    * Maps incoming pitches to the width of a processing sketch
    * using a logistical function to give convincing spread
    * 
-   * @param p processing context
+   * @param width
    * @param midi midi note 0-127
    */
-  mapPitch(p, midi){
-    //let i = 1/(1+Math.exp(-0.1*(midi-60)));
+  mapPitch(width, midi){
     let i = midi/127.0;
-    return i*p.width;
+    return i*width;
   }
 
   /**

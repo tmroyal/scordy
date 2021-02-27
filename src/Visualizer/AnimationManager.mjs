@@ -2,10 +2,12 @@ import AnimationObjectCollection from './AnimationObjectCollection.mjs'
 
 export default class AnimationManager {
 
-  constructor(){
+  constructor(width, height){
     this.objects = [];
     // this.aoc represents the collection of available animation objects
     this.aoc = new AnimationObjectCollection();
+    this.width = width;
+    this.height = height;
   }
 
   /**
@@ -35,11 +37,11 @@ export default class AnimationManager {
       params.note.forEach(note=>{
         let itParams = Object.assign({}, params);
         itParams.note = note;
-        this.objects.push(this.aoc.spawn(objectName, itParams, delay));
+        this.objects.push(this.aoc.spawn(objectName, itParams, this.width, this.height, delay));
 
       });
     } else {
-      this.objects.push(this.aoc.spawn(objectName, params, delay));
+      this.objects.push(this.aoc.spawn(objectName, params, this.width, this.height, delay));
     }
   }
 };
