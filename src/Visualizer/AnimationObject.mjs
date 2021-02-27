@@ -1,0 +1,42 @@
+export default class AnimationObject {
+  constructor(params, delay){
+    // the lifetime of the object in seconds
+    // obtained from params object
+    this.params = params
+    this.lifetime = this.params.duration || 1.0;
+    this.ellapsed = -delay;
+  }
+
+  /**
+   * Maps incoming pitches to the width of a processing sketch
+   * using a logistical function to give convincing spread
+   * 
+   * @param p processing context
+   * @param midi midi note 0-127
+   */
+  mapPitch(p, midi){
+    //let i = 1/(1+Math.exp(-0.1*(midi-60)));
+    let i = midi/127.0;
+    return i*p.width;
+  }
+
+  /**
+   * draws the object to the processing context
+   *  
+   * @param p the processing context
+   * @param dt delta time in seconds
+   * @param aoc AnimationObjectCollection, used to spawn new items
+   */
+  draw(p, dt, aoc){
+    this.ellapsed += dt;
+  }
+
+  /**
+   * returns whether the object has existed for longer 
+   * than it's lifetime
+   * @param p the processing context
+   */
+  finished(p){
+    return this.ellapsed >= this.lifetime; 
+  }
+}

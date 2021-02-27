@@ -28,8 +28,9 @@ document.addEventListener("DOMContentLoaded", function(){
   const scheduler = new Scheduler(SynthEngine);
   
   // Setup synth engine
-  SynthEngine.init();
+  SynthEngine.init(visualizer);
   SynthEngine.setVolume(0.6);
+  visualizer.setAudioContext(SynthEngine.audioContext);
 
   ConfigBlocklyBlocks(workspace, Blockly, SynthEngine);
 

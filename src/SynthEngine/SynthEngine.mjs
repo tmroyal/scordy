@@ -14,12 +14,14 @@ export default class SynthEngine {
   /**
    * initialize audio engine
    */
-  static init(){
+  static init(visualizer){
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     this.audioContext = new AudioContext();
     this.gainNode = this.audioContext.createGain();
     this.gainNode.connect(this.audioContext.destination);
     this.synths = {};
+
+    this.visualizer = visualizer;
 
     this.synths['SINE'] = new SineSynth(this);
     this.synths['SAW'] = new Saw(this);
@@ -47,6 +49,13 @@ export default class SynthEngine {
    */
   static playSynth(name, note, volume, duration, start){
     this.synths[name].play(note, volume, duration, start);
+
+    this.visualizer.spawn(name, {
+      note: note,
+      volume: volume, 
+      duration: duration,
+      start: start
+    });
   }
 
   /**
