@@ -5,6 +5,7 @@ export default class SinObject extends AnimationObject {
     super(params, width, height, delay);
   }
 
+
   /**
    * draws the object to the processing context
    * (Aoc is ignored)
@@ -18,11 +19,13 @@ export default class SinObject extends AnimationObject {
     if (this.ellapsed >= 0){
       let radius = this.shrinkingRadius();
 
-      p.noStroke();
-      p.fill(this.getColor(p));
+      p.noFill();
+      p.stroke(this.getColor(p));
+      p.strokeWeight(2);
 
       p.ellipse(this.x, this.y, radius, radius);
       this.y += this.speed*dt;
+
     }
   }
 

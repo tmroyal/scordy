@@ -12,11 +12,6 @@ export default class AnimationObject {
     this.y = 30;
 
     this.speed = 120.0;
-    this.omega = (params.volume || 1.0) * 3 * Math.PI * (1.0 + Math.random()*0.1);
-    this.theta = Math.random() * 2 * Math.PI;
-    if (Math.random() < 0.5){
-      this.omega *= -1.0;
-    }
   }
 
   /**

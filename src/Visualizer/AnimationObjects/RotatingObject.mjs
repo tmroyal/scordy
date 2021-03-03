@@ -3,6 +3,12 @@ import AnimationObject from '../AnimationObject.mjs'
 export default class RotatingObject extends AnimationObject {
   constructor(params, width, height, delay){
     super(params, width, height, delay);
+
+    this.omega = (params.volume || 1.0) * 3 * Math.PI * (1.0 + Math.random()*0.1);
+    this.theta = Math.random() * 2 * Math.PI;
+    if (Math.random() < 0.5){
+      this.omega *= -1.0;
+    }
   }
 
   /**
