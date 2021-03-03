@@ -29,4 +29,13 @@ export default class RotatingObject extends AnimationObject {
     }
   }
 
+  rotated(p, cb){
+    p.push();
+      p.translate(this.x, this.y);
+      p.rotate(this.theta || 0.0);
+      cb();
+    p.pop();
+  }
+
+
 }

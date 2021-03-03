@@ -52,14 +52,6 @@ export default class AnimationObject {
     return p.color(`hsla(${this.hue}, 30%, 50%, 0.9)`); 
   }
 
-  rotated(p, cb){
-    p.push();
-      p.translate(this.x, this.y);
-      p.rotate(this.theta || 0.0);
-      cb();
-    p.pop();
-  }
-
   /**
    * returns whether the object has exited
    * @param p the processing context
