@@ -2,6 +2,7 @@ import SinObject from "./AnimationObjects/SinObject.mjs"
 import SquareObject from "./AnimationObjects/SquareObject.mjs"
 import TriangleObject from "./AnimationObjects/TriangleObject.mjs"
 import SawObject from "./AnimationObjects/SawObject.mjs"
+import OrganObject from "./AnimationObjects/OrganObject.mjs"
 
 export default class AnimationObjectCollection {
   constructor(params){ 
@@ -9,7 +10,8 @@ export default class AnimationObjectCollection {
       "sine": SinObject,
       "square": SquareObject,
       "tri": TriangleObject,
-      "saw": SawObject
+      "saw": SawObject,
+      "organ": OrganObject
     };
   
   }
