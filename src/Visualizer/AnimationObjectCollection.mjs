@@ -6,6 +6,7 @@ import OrganObject from "./AnimationObjects/OrganObject.mjs"
 import BassObject from "./AnimationObjects/BassObject.mjs"
 import CowbellObject from "./AnimationObjects/CowbellObject.mjs"
 import HiHatObject from "./AnimationObjects/HiHatObject.mjs"
+import SnareObject from "./AnimationObjects/SnareObject.mjs"
 
 export default class AnimationObjectCollection {
   constructor(params){ 
@@ -17,7 +18,8 @@ export default class AnimationObjectCollection {
       "organ": OrganObject,
       "bass1": BassObject,
       "cowbell": CowbellObject,
-      "hihat": HiHatObject
+      "hihat": HiHatObject,
+      "snare": SnareObject
     }; 
   }
 
