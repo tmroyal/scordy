@@ -1,4 +1,3 @@
-import AnimationObject from '../AnimationObject.mjs'
 import BufferedObject from './BufferedObject.mjs';
 
 const buffer = (()=>{
