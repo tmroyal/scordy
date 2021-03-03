@@ -1,4 +1,5 @@
 import AnimationObject from '../AnimationObject.mjs'
+import BufferedObject from './BufferedObject.mjs';
 
 const buffer = (()=>{
   let b = [];
@@ -10,32 +11,17 @@ const buffer = (()=>{
   return b;
 })();
 
-export default class CowbellObject extends AnimationObject {
+export default class CowbellObject extends BufferedObject {
 
   constructor(params, width, height, delay){
     super(params, width, height, delay);
-    this.x = width/2;
-    this.bufferOffset = Math.floor(Math.random()*5);
+
     this.buffer = buffer;
+    this.color = 'hsla(190, 88%, 57%, 0.9)';
   }
 
 
   draw(p, dt){
     super.draw(p, dt);
-    if (this.ellapsed >= 0){
-      let ind;
-      let rad = this.shrinkingRadius();
-      p.strokeWeight(2);
-      p.stroke(128,128,255);
-      p.noFill();
-
-      p.beginShape();
-        for (let i = 0; i < this.buffer.length; i++){
-          ind = (i + this.bufferOffset) % this.buffer.length;
-          p.vertex(this.buffer[ind]*rad+this.x, this.y-i*2);
-        }
-      p.endShape();
-      this.y += this.speed*dt;
-    }
   }
 }
