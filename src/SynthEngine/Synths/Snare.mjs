@@ -19,7 +19,6 @@ export default class Snare extends Synth {
     }
   }
 
-
   /**
    * Play one note from this synth. Ignored params left to be compatible with api
    * 
@@ -38,19 +37,19 @@ export default class Snare extends Synth {
     let noise = this.engine.audioContext.createBufferSource();
     noise.buffer = this.noiseBuffer;
     let noiseEnv = this.engine.audioContext.createGain();
-    this.setEnvelope(0, 0.3*volume, 0.16, noiseEnv.gain, start);
+    this.setEnvelope(0, 0.3*volume, 0.16*dur, noiseEnv.gain, start);
 
     let osc = this.engine.audioContext.createOscillator();
     let oscEnv = this.engine.audioContext.createGain();
-    this.setEnvelope(0, volume, 0.05, oscEnv.gain, start);
+    this.setEnvelope(0, volume*0.5, 0.05*dur, oscEnv.gain, start);
 
     let filt = this.engine.audioContext.createBiquadFilter();
     filt.type = "bandpass";
-    filt.frequency.value = 1000;
+    filt.frequency.value = 500;
     filt.Q.value = 0.5;
 
-    osc.frequency.setValueAtTime(note*300+150, start);
-    osc.frequency.linearRampToValueAtTime(note*120+60,start+0.05);
+    osc.frequency.setValueAtTime(250, start);
+    osc.frequency.linearRampToValueAtTime(60,start+0.05*dur);
 
     osc.connect(oscEnv).connect(this.engine.gainNode);
     noise.connect(noiseEnv).connect(this.engine.gainNode);
