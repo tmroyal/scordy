@@ -67,8 +67,10 @@ export default class Visualizer{
    * @param params the parameters for the spawning object
    */
   spawn(objectName, params){
-    let delay = this.calculateDelay(params);
-    this.animationManager.spawn(objectName, params, delay);
+    if (!document.hidden){
+      let delay = this.calculateDelay(params);
+      this.animationManager.spawn(objectName, params, delay);
+    }
   }
 
 }
