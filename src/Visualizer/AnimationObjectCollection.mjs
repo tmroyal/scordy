@@ -4,6 +4,7 @@ import TriangleObject from "./AnimationObjects/TriangleObject.mjs"
 import SawObject from "./AnimationObjects/SawObject.mjs"
 import OrganObject from "./AnimationObjects/OrganObject.mjs"
 import BassObject from "./AnimationObjects/BassObject.mjs"
+import CowbellObject from "./AnimationObjects/CowbellObject.mjs"
 
 export default class AnimationObjectCollection {
   constructor(params){ 
@@ -13,9 +14,9 @@ export default class AnimationObjectCollection {
       "tri": TriangleObject,
       "saw": SawObject,
       "organ": OrganObject,
-      "bass1": BassObject
-    };
-  
+      "bass1": BassObject,
+      "cowbell": CowbellObject
+    }; 
   }
 
   spawn(objectName, params, width, height, delay){
