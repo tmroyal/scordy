@@ -5,6 +5,7 @@ import SawObject from "./AnimationObjects/SawObject.mjs"
 import OrganObject from "./AnimationObjects/OrganObject.mjs"
 import BassObject from "./AnimationObjects/BassObject.mjs"
 import CowbellObject from "./AnimationObjects/CowbellObject.mjs"
+import HiHatObject from "./AnimationObjects/HiHatObject.mjs"
 
 export default class AnimationObjectCollection {
   constructor(params){ 
@@ -15,7 +16,8 @@ export default class AnimationObjectCollection {
       "saw": SawObject,
       "organ": OrganObject,
       "bass1": BassObject,
-      "cowbell": CowbellObject
+      "cowbell": CowbellObject,
+      "hihat": HiHatObject
     }; 
   }
 
