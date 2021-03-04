@@ -172,11 +172,13 @@ export default class Scheduler {
    *  for example, if the scheduler is at the first half of a beat, and atBeat
    *  is 1, schedule at the beat after next. Default is 0, for scheduling at the
    *  next beat.
+   * @param {float} delay - (default: 0)
    */
-  schedule(f, atBeat){
+  schedule(f, atBeat, delay){
     atBeat = atBeat || 0;
+    delay = delay || 0;
     this.events.push({
-      atBeat: Math.ceil(this.currentBeat)+atBeat,
+      atBeat: Math.ceil(this.currentBeat)+atBeat+delay,
       f: f, 
       id: this.nextId++
     });
@@ -188,14 +190,15 @@ export default class Scheduler {
    * @param f function to schedule
    * @param everyNBeats number of beats which to call function
    * @param atBeat first beat to start scheduling
+   * @param delay delay
    */
-  scheduleRecurring(f, everyNBeats, atBeat){
+  scheduleRecurring(f, everyNBeats, atBeat, delay){
     const cb = function(beat, time){
       f(beat, time);
       return everyNBeats;
     }
 
-    return this.schedule(cb);
+    return this.schedule(cb, atBeat, delay);
   }
 
   /**
