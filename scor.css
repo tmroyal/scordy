@@ -46,6 +46,20 @@ button.action:disabled {
   background-position: -1px -1px;
 }
 
+#newScore {
+  background-image: url(newFile.png);
+  margin-left: 2em;
+}
+
+#openScore {
+  background-image: url(openFile.png);
+}
+
+#saveScore {
+  background-image: url(saveFile.png);
+}
+
+
 /* Flexbox definitions */
 
 h1 {
