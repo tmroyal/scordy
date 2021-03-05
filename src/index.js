@@ -4,15 +4,12 @@ import Blockly, { Block } from 'blockly';
 import ConfigBlocklyBlocks from "./BlocklyConfig/ConfigBlockly.mjs"
 import setupWindowScope from "./setupWindowScope"
 import Visualizer from "./Visualizer/Visualizer.mjs"
+import PersistenceEngine from "./PersistenceEngine.mjs"
 
 // run this on load
 document.addEventListener("DOMContentLoaded", function(){
 
   const visualizer = new Visualizer();
-
-  // setup Blockly
-  const workspace = Blockly.inject('blockly',
-    {toolbox: document.getElementById('toolbox')}); 
 
   // setup scheduler
   const scheduler = new Scheduler(SynthEngine);
@@ -22,37 +19,29 @@ document.addEventListener("DOMContentLoaded", function(){
   SynthEngine.setVolume(0.6);
   visualizer.setAudioContext(SynthEngine.audioContext);
 
+  // setup Blockly
+  const workspace = Blockly.inject('blockly',
+    {toolbox: document.getElementById('toolbox')}); 
   ConfigBlocklyBlocks(workspace, Blockly, SynthEngine);
-
   workspace.setTheme(Blockly.Themes.Dark);
 
-  // get previously stored script, if it exists
-  (()=>{
-    var xml_text = window.localStorage.getItem('currentScript');
-    if (xml_text){
-      var xml = Blockly.Xml.textToDom(xml_text);
-      Blockly.Xml.domToWorkspace(xml, workspace);
-    } else {
-      // add tempo block
-      var configBlock = '<xml><block type="scor_tempo" deletable="false" movable="false"></block></xml>';
-      Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(configBlock), workspace);
-    }
-  })();
+  // setup persistence engine
+  const pstEngine = new PersistenceEngine(Blockly, workspace);
 
   workspace.addChangeListener(()=>{
-    var xml = Blockly.Xml.workspaceToDom(workspace);
-    var xml_text = Blockly.Xml.domToText(xml);
-    window.localStorage.setItem('currentScript', xml_text);
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     document.getElementById('code').innerText = code;
-
+    pstEngine.setChanged();
   });
 
+  // attach events so eval works
   setupWindowScope(SynthEngine, scheduler);
 
   /**
-   * Setup events for start and stop button
+   * Setup events for buttons
    */
+  pstEngine.attach("newScore", "openScore", "saveScore", "fileInput");
+
   const startButton = document.getElementById("startAudio");
   const stopButton = document.getElementById("stopAudio");
 
