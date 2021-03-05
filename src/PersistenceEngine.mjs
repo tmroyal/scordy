@@ -17,9 +17,15 @@ export default class PersistenceEngine {
   }
 
   setWorkspace(xml_text){
-    var xml = this.Blockly.Xml.textToDom(xml_text);
-    this.Blockly.Xml.domToWorkspace(xml, this.workspace);
-    this.persistLocalstore();
+    let xml;
+    try {
+      xml = this.Blockly.Xml.textToDom(xml_text);
+      this.workspace.clear();
+      this.Blockly.Xml.domToWorkspace(xml, this.workspace);
+      this.persistLocalstore();
+    } catch {
+      alert('Invalid sketch detected');
+    }
   }
 
   setUnchanged(){
@@ -71,7 +77,18 @@ export default class PersistenceEngine {
   }
 
   loadFile(event){
-    console.log(event.target.value);
+    if (event.target.files[0] == null){
+      return;
+    } 
+
+    const reader = new FileReader();
+    reader.onload = ()=>{
+      this.setWorkspace(reader.result);
+    }
+    reader.readAsText(event.target.files[0]);
+
+    // no matter what, clear file input
+    event.target.value = null;
   }
 
   requestNew(){
