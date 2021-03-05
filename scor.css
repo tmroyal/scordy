@@ -27,6 +27,10 @@ button.action:hover {
   background-color: rgb(162, 230, 162);
 }
 
+button.action:disabled {
+  background-color:rgb(99, 117, 104);
+}
+
 #startAudio {
   background-image: url(startButtonSmall.png);
   background-position: -3px 0px;
