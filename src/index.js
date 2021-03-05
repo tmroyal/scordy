@@ -53,10 +53,15 @@ document.addEventListener("DOMContentLoaded", function(){
   /**
    * Setup events for start and stop button
    */
+  const startButton = document.getElementById("startAudio");
+  const stopButton = document.getElementById("stopAudio");
+
   function startAudio(){
 
     scheduler.setTempo(120);
     scheduler.start();
+    startButton.disabled = true;
+    stopButton.disabled = false;
 
     try{
       eval(Blockly.JavaScript.workspaceToCode(workspace));
@@ -67,9 +72,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
   function stopAudio(){
     scheduler.stop();
+    stopButton.disabled = true;
+    startButton.disabled = false;
   }
 
-  document.getElementById("startAudio").addEventListener("click", startAudio);
-  document.getElementById("stopAudio").addEventListener("click", stopAudio);
+  startButton.addEventListener("click", startAudio);
+
+  stopButton.addEventListener("click", stopAudio);
+  stopButton.disabled = true;
 
 });
