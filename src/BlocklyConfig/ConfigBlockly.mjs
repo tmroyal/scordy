@@ -353,6 +353,28 @@ export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
+  Blockly.Blocks['scor_pitch'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Note")
+          .appendField(new Blockly.FieldDropdown([["C","C"], ["D","D"], ["E","E"], ["F","F"], ["G","G"], ["A","A"], ["B","B"]]), "NAME")
+          .appendField(new Blockly.FieldDropdown([["♮","NATURAL"], ["♭","FLAT"], ["♯","SHARP"]]), "MODIFIER")
+          .appendField(new Blockly.FieldNumber(4, 0, 9, 1), "OCTAVE");
+      this.setOutput(true, null);
+      this.setColour(120);
+      this.setTooltip("");
+      this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['scor_pitch'] = function(block) {
+    var dropdown_name = block.getFieldValue('NAME');
+    var dropdown_modifier = block.getFieldValue('MODIFIER');
+    var number_octave = parseInt(block.getFieldValue('OCTAVE')) + 1; // convert to C4 = middle C
+
+    var code = `${ notes[dropdown_name] + modifiers[dropdown_modifier] + 12*number_octave }`
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  };
 
   /**
    * At octave
