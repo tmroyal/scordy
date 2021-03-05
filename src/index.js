@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   workspace.addChangeListener(()=>{
     var code = Blockly.JavaScript.workspaceToCode(workspace);
-    document.getElementById('code').innerText = code;
+    document.getElementById('codeBlock').innerText = code;
     pstEngine.setChanged();
   });
 
@@ -42,8 +42,11 @@ document.addEventListener("DOMContentLoaded", function(){
    */
   pstEngine.attach("newScore", "openScore", "saveScore", "fileInput");
 
+  const modalCode = document.getElementById("modalCode");
+
   const startButton = document.getElementById("startAudio");
   const stopButton = document.getElementById("stopAudio");
+  const codeButton = document.getElementById("showCode");
 
   function startAudio(){
 
@@ -69,5 +72,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
   stopButton.addEventListener("click", stopAudio);
   stopButton.disabled = true;
+
+  function hideModal(){
+    modalCode.classList.add('hidden');
+  }
+
+  function showModal(){
+    modalCode.classList.remove('hidden');
+  }
+
+  modalCode.onclick = hideModal;
+  codeButton.onclick = showModal;
 
 });
