@@ -16,6 +16,12 @@ export default class PersistenceEngine {
     this.setWorkspace(xml_text);
   }
 
+  /**
+   * sets workspace using xml text
+   * shows error if parse fails
+   *   
+   * @param xml_text 
+   */
   setWorkspace(xml_text){
     let xml;
     try {
@@ -28,15 +34,22 @@ export default class PersistenceEngine {
     }
   }
 
+  /** sets status of sketch to unchanged */
   setUnchanged(){
     this.hasChanged = false;
   }
 
+  /**
+   * sets status of sketch to changed and persists to localStorage
+   */
   setChanged(){
     this.hasChanged = true;
     this.persistLocalstore();
   }
 
+  /**
+   * Persist to localstorage
+   */
   persistLocalstore(){
     var xml = this.Blockly.Xml.workspaceToDom(this.workspace);
     var xml_text = this.Blockly.Xml.domToText(xml);
@@ -71,10 +84,18 @@ export default class PersistenceEngine {
     });
   }
 
+  /**
+   * Confirm open or save if file has changed
+   */
   confirm(){
     // return if this hasn't changed or if user confirms
     return !this.hasChanged || confirm("Are you sure? Changes will be lost.");
   }
+
+  /**
+   * event for file input change  
+   * @param event 
+   */
 
   loadFile(event){
     if (event.target.files[0] == null){
@@ -91,6 +112,9 @@ export default class PersistenceEngine {
     event.target.value = null;
   }
 
+  /**
+   * after confirmation, create new file
+   */
   requestNew(){
     if (this.confirm()){
       this.setWorkspace(this.defaultScore);
@@ -98,12 +122,18 @@ export default class PersistenceEngine {
     }
   }
 
+  /**
+   * after confirmation, open new file
+   */
   requestOpen(){
     if (this.confirm()){
       document.getElementById("fileInput").click(); // if user accpets, load file is triggered
     }
   }
 
+  /**
+   * Save file if dialog is accepted. Utilized download capabilities.
+   */
   requestSave(){
     var xml = this.Blockly.Xml.workspaceToDom(this.workspace);
     var xml_text = this.Blockly.Xml.domToText(xml);
