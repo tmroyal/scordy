@@ -29,7 +29,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
     var statements_statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
     var value_return_dur = Blockly.JavaScript.valueToCode(block, 'RETURN_DUR', Blockly.JavaScript.ORDER_ATOMIC);
     var code = 
-      `scheduler.schedule((current_beat, current_time)=>{\n${ statements_statements }\n  return ${ value_return_dur };\n}, ${ number_delay });`;
+      `scheduler.schedule((current_beat, current_time)=>{\n${ statements_statements }  return ${ value_return_dur };\n}, ${ number_delay });\n`;
     return code;
   };
 
@@ -62,7 +62,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
     var num_beats = numerator_beats / denom_beats;
     var statements_statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
     var code = 
-      `scheduler.scheduleRecurring((current_beat, current_time)=>{\n${statements_statements}}, ${num_beats}, ${delay});`;
+      `scheduler.scheduleRecurring((current_beat, current_time)=>{\n${statements_statements}}, ${num_beats}, ${delay});\n`;
     return code;
   };
 
@@ -416,7 +416,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
 
   Blockly.JavaScript['scor_tempo'] = function(block) {
     var number_name = block.getFieldValue('TEMPO');
-    var code = `scheduler.setTempo(${ number_name })`;
+    var code = `scheduler.setTempo(${ number_name })\n`;
     return code;
   };
 
