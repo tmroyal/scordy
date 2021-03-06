@@ -57,7 +57,7 @@ export default class AnimationObject {
    * @param p the processing context
    */
   finished(p){
-    this.y >= p.height; 
+    return this.y >= p.height; 
   }
 
   shrinkingRadius(){
