@@ -18,7 +18,6 @@ export default class BassObject extends SustainedObject {
         this.x - base/2, this.y, 
         this.x + base/2, this.y,
         this.x, this.y - len);
-      this.y += this.speed*dt;
     }
   }
 

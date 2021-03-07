@@ -25,7 +25,6 @@ export default class BufferedObject extends AnimationObject {
           p.vertex(this.buffer[ind]*rad+this.x, this.y-i*2);
         }
       p.endShape();
-      this.y += this.speed*dt;
     }
   }
 }

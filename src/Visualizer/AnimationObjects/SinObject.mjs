@@ -24,7 +24,6 @@ export default class SinObject extends AnimationObject {
       p.strokeWeight(2);
 
       p.ellipse(this.x, this.y, radius, radius);
-      this.y += this.speed*dt;
 
     }
   }

@@ -11,7 +11,7 @@ export default class AnimationObject {
     this.hue = this.mapHue(params.note);
     this.y = 30;
 
-    this.speed = 120.0;
+    this.speed = 160.0;
   }
 
   /**
@@ -45,7 +45,9 @@ export default class AnimationObject {
    */
   draw(p, dt, aoc){
     this.ellapsed += dt;
-
+    if (this.ellapsed > 0){
+      this.y += this.speed * dt;
+    }
   }
 
   getColor(p){

@@ -15,7 +15,6 @@ export default class OrganObject extends SustainedObject {
       p.stroke(this.getColor(p));
       p.line(this.x, this.y, this.x, this.y-len);
 
-      this.y += this.speed*dt;
     }
   }
 

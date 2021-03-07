@@ -24,7 +24,6 @@ export default class RotatingObject extends AnimationObject {
     if (this.ellapsed >= 0){
       this.rotated(p, cb);
 
-      this.y += this.speed*dt;
       this.theta += this.omega*dt;
     }
   }
