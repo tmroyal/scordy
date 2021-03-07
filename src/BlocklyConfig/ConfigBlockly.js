@@ -442,5 +442,24 @@ export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
     return code;
   };
 
+  // scr comment
+
+  Blockly.Blocks['scor_comment'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("//")
+          .appendField(new Blockly.FieldTextInput("insert comment here"), "Comment");
+      this.setColour(330);
+      this.setTooltip("");
+      this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['scor_comment'] = function(block) {
+    var text_comment = block.getFieldValue('Comment');
+    // TODO: Assemble JavaScript into code variable.
+    var code = `\/\/${text_comment}\n`;
+    return code;
+  };
 
 }
