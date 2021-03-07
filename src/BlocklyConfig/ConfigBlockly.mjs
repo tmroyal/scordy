@@ -141,7 +141,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
   Blockly.JavaScript['scor_play_synth'] = function(block) {
     var dropdown_name = block.getFieldValue('NAME');
     var value_note = Blockly.JavaScript.valueToCode(block, 'NOTE', Blockly.JavaScript.ORDER_ATOMIC) || 60;
-    var value_volume = Blockly.JavaScript.valueToCode(block, 'VOLUME', Blockly.JavaScript.ORDER_ATOMIC) || 0.5;
+    var value_volume = Blockly.JavaScript.valueToCode(block, 'VOLUME', Blockly.JavaScript.ORDER_ATOMIC) || 0.1;
     var value_length = Blockly.JavaScript.valueToCode(block, 'LENGTH', Blockly.JavaScript.ORDER_ATOMIC) || 0.5;
     var code = `SynthEngine.playSynth("${ dropdown_name }", ${ value_note }, ${ value_volume }, ${ value_length }, current_time);\n`;
     return code;
