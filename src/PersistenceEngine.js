@@ -142,7 +142,7 @@ export default class PersistenceEngine {
     const a = document.createElement('a');
 
     a.href = URL.createObjectURL(file);
-    a.download = "Untitled.txt";
+    a.download = "Untitled.xml";
     a.click();
     URL.revokeObjectURL(a.href);
     a.remove();
