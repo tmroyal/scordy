@@ -51,10 +51,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
   function startAudio(){
 
-    scheduler.setTempo(120);
-    scheduler.start();
     startButton.disabled = true;
     stopButton.disabled = false;
+    scheduler.start();
 
     try{
       eval(Blockly.JavaScript.workspaceToCode(workspace));
