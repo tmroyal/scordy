@@ -116,5 +116,5 @@ h1 {
   background-color: rgb(107, 111, 136);
   margin: 4em 20%;
   padding: 2em;
-
+  overflow: scroll;
 }
