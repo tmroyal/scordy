@@ -428,7 +428,8 @@ export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
           .appendField("console.log");
       this.appendDummyInput()
           .appendField("(see browser console)");
-      this.setInputsInline(false);
+          this.setPreviousStatement(true, null);
+          this.setNextStatement(true, null);
       this.setColour(230);
       this.setTooltip("Prints to developer tools");
       this.setHelpUrl("");
