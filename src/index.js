@@ -24,7 +24,16 @@ document.addEventListener("DOMContentLoaded", function(){
   const workspace = Blockly.inject('blockly',
     {
       toolbox: document.getElementById('toolbox'),
-      oneBasedIndex: false
+      oneBasedIndex: false,
+      zoom: {
+        controls: true,
+        wheel: true,
+        startScale: 1.0,
+        maxScale: 3,
+        minScale: 0.3,
+        scaleSpeed: 1.2,
+        pinch: true
+      }
     }); 
   ConfigBlocklyBlocks(workspace, Blockly, SynthEngine);
   workspace.setTheme(Blockly.Themes.Dark);
