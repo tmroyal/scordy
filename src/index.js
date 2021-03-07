@@ -22,7 +22,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
   // setup Blockly
   const workspace = Blockly.inject('blockly',
-    {toolbox: document.getElementById('toolbox')}); 
+    {
+      toolbox: document.getElementById('toolbox'),
+      oneBasedIndex: false
+    }); 
   ConfigBlocklyBlocks(workspace, Blockly, SynthEngine);
   workspace.setTheme(Blockly.Themes.Dark);
 
