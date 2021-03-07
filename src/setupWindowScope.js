@@ -1,5 +1,6 @@
 import Chord from "./MusicalFunctions/Chord.js"
 import Scale from "./MusicalFunctions/Scale.js"
+import Transpose from "./MusicalFunctions/Transpose.js"
 import NumberGenerators from "./NumberGenerators/NumberGenerators.js";
 
 /**
@@ -13,4 +14,5 @@ export default function setupWindowScope(SynthEngine, scheduler){
   window.NumberGenerators = NumberGenerators;
   window.Chord = Chord;
   window.Scale = Scale;
+  window.Transpose = Transpose;
 }

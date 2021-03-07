@@ -396,7 +396,7 @@ export default function ConfigBlocklyBlocks(workspace, Blockly, SynthEngine){
     var number_octaves = block.getFieldValue('OCTAVES') || '4';
     var value_input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC) || '0'
     
-    var code = (parseInt(number_octaves)+1)*12 + parseInt(value_input);
+    var code = `Transpose.toOctave(${ number_octaves }, ${ value_input })`;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
