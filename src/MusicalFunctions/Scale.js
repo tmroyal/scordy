@@ -32,7 +32,7 @@ export default class Scale {
    * @param baseNote 
    */
   static minorFromDegree(degree, baseNote){
-    baseNote = this.validate(baseNote) ? baseNote : 60;;
+    baseNote = this.validate(baseNote) ? baseNote : 60;
 
     const scaleData = this._getScaleMember(degree, minorScale, baseNote);
 
@@ -61,6 +61,7 @@ export default class Scale {
    * @param baseNote 
    */
   static _getScaleMember(degree, scale, baseNote){
+    degree = Math.round(degree);
     let baseOctave = 0;
 
     while (degree < 0){
