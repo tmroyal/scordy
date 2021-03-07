@@ -1,4 +1,4 @@
-import SustainedObject from "./SustainedObject.mjs";
+import SustainedObject from "./SustainedObject.js";
 
 export default class OrganObject extends SustainedObject {
   constructor(params, width, height, delay){

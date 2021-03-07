@@ -1,4 +1,4 @@
-import RotatingObject from './RotatingObject.mjs'
+import RotatingObject from './RotatingObject.js'
 
 export default class SquareObject extends RotatingObject {
   constructor(params, width, height, delay){

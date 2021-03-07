@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import AnimationManager from './AnimationManager.mjs'
+import AnimationManager from './AnimationManager.js'
 
 const WIDTH = 400;
 const HEIGHT = 480;

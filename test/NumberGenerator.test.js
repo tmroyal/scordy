@@ -1,4 +1,4 @@
-import NumberGenerators from '../src/NumberGenerators/NumberGenerators.mjs'
+import NumberGenerators from '../src/NumberGenerators/NumberGenerators.js'
 var expect = require('chai').expect;
 
 /**
@@ -56,7 +56,7 @@ describe('Number Generators', ()=>{
       let theList = [0, 1, 2, 3, 4];
       let chosenValues = new Set();
 
-      for (var i = 0; i < 50; i++){
+      for (var i = 0; i < 100; i++){
         chosenValues.add(NumberGenerators.choose(theList));
         if (chosenValues.size == theList.length){ break; }
       }

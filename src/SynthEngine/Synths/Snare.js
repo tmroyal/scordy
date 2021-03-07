@@ -1,4 +1,4 @@
-import Synth from "./Synth.mjs";
+import Synth from "./Synth.js";
 
 const NOISEBUFFERSIZE = 8000;
 

@@ -1,10 +1,10 @@
-import SineSynth from "./Synths/SineSynth.mjs"
-import { Saw, Tri, Square, Bass1 } from "./Synths/FilteredSynths.mjs"
-import Organ from "./Synths/Organ.mjs"
-import Cowbell from "./Synths/Cowbell.mjs"
-import Hihat from "./Synths/Hihat.mjs"
-import Snare from "./Synths/Snare.mjs"
-import Kick from "./Synths/Kick.mjs"
+import SineSynth from "./Synths/SineSynth.js"
+import { Saw, Tri, Square, Bass1 } from "./Synths/FilteredSynths.js"
+import Organ from "./Synths/Organ.js"
+import Cowbell from "./Synths/Cowbell.js"
+import Hihat from "./Synths/Hihat.js"
+import Snare from "./Synths/Snare.js"
+import Kick from "./Synths/Kick.js"
 
 export default class SynthEngine {
   constructor(){

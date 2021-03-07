@@ -1,5 +1,5 @@
-import Synth from "./Synth.mjs";
-import SynthUtil from "./SynthUtil.mjs"
+import Synth from "./Synth.js";
+import SynthUtil from "./SynthUtil.js"
 
 const NOISEBUFFERSIZE = 4410;
 

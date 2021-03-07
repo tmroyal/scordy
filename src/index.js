@@ -1,10 +1,10 @@
-import SynthEngine from "./SynthEngine/SynthEngine.mjs"
-import Scheduler from "./SequencerEngine/Scheduler.mjs"
+import SynthEngine from "./SynthEngine/SynthEngine.js"
+import Scheduler from "./SequencerEngine/Scheduler.js"
 import Blockly, { Block } from 'blockly';
-import ConfigBlocklyBlocks from "./BlocklyConfig/ConfigBlockly.mjs"
+import ConfigBlocklyBlocks from "./BlocklyConfig/ConfigBlockly.js"
 import setupWindowScope from "./setupWindowScope"
-import Visualizer from "./Visualizer/Visualizer.mjs"
-import PersistenceEngine from "./PersistenceEngine.mjs"
+import Visualizer from "./Visualizer/Visualizer.js"
+import PersistenceEngine from "./PersistenceEngine.js"
 
 // run this on load
 document.addEventListener("DOMContentLoaded", function(){

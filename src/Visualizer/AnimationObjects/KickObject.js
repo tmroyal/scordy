@@ -1,4 +1,4 @@
-import BufferedObject from './BufferedObject.mjs';
+import BufferedObject from './BufferedObject.js';
 
 var buffer = (()=>{
   var b = [];

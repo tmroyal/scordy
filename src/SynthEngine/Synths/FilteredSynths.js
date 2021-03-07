@@ -1,5 +1,5 @@
-import Synth from "./Synth.mjs"
-import SynthUtil from "./SynthUtil.mjs"
+import Synth from "./Synth.js"
+import SynthUtil from "./SynthUtil.js"
 
 class FilteredSynth extends Synth {
   constructor(engine){

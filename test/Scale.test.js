@@ -1,4 +1,4 @@
-import Scale from "../src/MusicalFunctions/Scale.mjs"
+import Scale from "../src/MusicalFunctions/Scale.js"
 var expect = require('chai').expect;
 
 describe("Major Scale", ()=>{

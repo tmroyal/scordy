@@ -1,6 +1,6 @@
-import Chord from "./MusicalFunctions/Chord.mjs"
-import Scale from "./MusicalFunctions/Scale.mjs"
-import NumberGenerators from "./NumberGenerators/NumberGenerators.mjs";
+import Chord from "./MusicalFunctions/Chord.js"
+import Scale from "./MusicalFunctions/Scale.js"
+import NumberGenerators from "./NumberGenerators/NumberGenerators.js";
 
 /**
  * Adds libraries to window in order for 

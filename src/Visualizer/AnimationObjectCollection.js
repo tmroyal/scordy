@@ -1,13 +1,13 @@
-import SinObject from "./AnimationObjects/SinObject.mjs"
-import SquareObject from "./AnimationObjects/SquareObject.mjs"
-import TriangleObject from "./AnimationObjects/TriangleObject.mjs"
-import SawObject from "./AnimationObjects/SawObject.mjs"
-import OrganObject from "./AnimationObjects/OrganObject.mjs"
-import BassObject from "./AnimationObjects/BassObject.mjs"
-import CowbellObject from "./AnimationObjects/CowbellObject.mjs"
-import HiHatObject from "./AnimationObjects/HiHatObject.mjs"
-import SnareObject from "./AnimationObjects/SnareObject.mjs"
-import KickObject from "./AnimationObjects/KickObject.mjs"
+import SinObject from "./AnimationObjects/SinObject.js"
+import SquareObject from "./AnimationObjects/SquareObject.js"
+import TriangleObject from "./AnimationObjects/TriangleObject.js"
+import SawObject from "./AnimationObjects/SawObject.js"
+import OrganObject from "./AnimationObjects/OrganObject.js"
+import BassObject from "./AnimationObjects/BassObject.js"
+import CowbellObject from "./AnimationObjects/CowbellObject.js"
+import HiHatObject from "./AnimationObjects/HiHatObject.js"
+import SnareObject from "./AnimationObjects/SnareObject.js"
+import KickObject from "./AnimationObjects/KickObject.js"
 
 export default class AnimationObjectCollection {
   constructor(params){ 

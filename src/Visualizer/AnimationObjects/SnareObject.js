@@ -1,4 +1,4 @@
-import BufferedObject from './BufferedObject.mjs';
+import BufferedObject from './BufferedObject.js';
 
 var buffer = [0.18984449059202868,
 0.7257193846958772,

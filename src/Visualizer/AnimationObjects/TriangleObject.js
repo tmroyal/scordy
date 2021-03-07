@@ -1,4 +1,4 @@
-import RotatingObject from './RotatingObject.mjs'
+import RotatingObject from './RotatingObject.js'
 
 const SQRT2 = Math.sqrt(2);
 
@@ -19,13 +19,11 @@ export default class SquareObject extends RotatingObject {
     let r_2 = radius/2;
     let r_sq2_2 = r_2*SQRT2;
 
-    p.noFill();
-    p.stroke(this.getColor(p));
-    p.strokeWeight(2);
+    p.noStroke();
+    p.fill(this.getColor(p));
 
     super.draw(p, dt, ()=>{
-      p.line(0, radius, r_sq2_2, -r_2);
-      p.line(0, radius, -r_sq2_2, -r_2);
+      p.triangle(0, radius, r_sq2_2, -r_2, -r_sq2_2, -r_2);
     });
   }
 

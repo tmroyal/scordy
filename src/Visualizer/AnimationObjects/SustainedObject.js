@@ -1,4 +1,4 @@
-import AnimationObject from '../AnimationObject.mjs'
+import AnimationObject from '../AnimationObject.js'
 
 export default class SustainedObject extends AnimationObject {
   constructor(params, width, height, delay){

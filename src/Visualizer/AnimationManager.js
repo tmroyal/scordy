@@ -1,4 +1,4 @@
-import AnimationObjectCollection from './AnimationObjectCollection.mjs'
+import AnimationObjectCollection from './AnimationObjectCollection.js'
 
 export default class AnimationManager {
 
