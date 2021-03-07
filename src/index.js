@@ -8,6 +8,7 @@ import PersistenceEngine from "./PersistenceEngine.mjs"
 
 // run this on load
 document.addEventListener("DOMContentLoaded", function(){
+  'use strict';
 
   const visualizer = new Visualizer();
 

@@ -17,9 +17,15 @@ export default class SynthEngine {
   static init(visualizer){
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     this.audioContext = new AudioContext();
+    this.limiter = this.audioContext.createDynamicsCompressor();
     this.gainNode = this.audioContext.createGain();
-    this.gainNode.connect(this.audioContext.destination);
+    this.gainNode.connect(this.limiter).connect(this.audioContext.destination);
     this.synths = {};
+
+    // limiter settings
+    this.limiter.threshold.value = -6;
+    this.limiter.knee.value = 3;
+    this.limiter.ratio.value = 20;
 
     this.visualizer = visualizer;
 
