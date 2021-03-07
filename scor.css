@@ -118,3 +118,8 @@ h1 {
   padding: 2em;
   overflow: scroll;
 }
+
+#contact {
+  font-size: 70%;
+  margin-top: 1em;
+}
