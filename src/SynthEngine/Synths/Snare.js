@@ -9,7 +9,6 @@ export default class Snare extends Synth {
   }
 
   init(){
-    console.log("setup noise")
     this.setupNoise();
   }
 
