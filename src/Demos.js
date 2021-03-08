@@ -33,7 +33,7 @@ const demoData = {
 };
 
 export default class Demos {
-  constructor(){
+  constructor(persister){
     const demoElement = document.getElementById("demoList");
 
     const template = document.getElementById("demoTemplate");
@@ -44,15 +44,19 @@ export default class Demos {
       demoListing.getElementsByTagName("h3")[0].innerText = key;
       demoListing.getElementsByTagName("p")[0].innerText = value.description;
       demoElement.appendChild(demoListing);
+      demoListing.style.display = 'initial';
 
       demoListing.getElementsByTagName("a")[0].onclick = ()=>{
         this.loadDemo(key);
       };
     }
+    this.persister = persister;
   }
 
   loadDemo(name){
-    console.log(name);
+    if (this.persister.confirm()){
+      this.persister.setWorkspace(demoData[name].data);
+    }
   }
 
 }

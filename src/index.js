@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function(){
   // attach events so eval works
   setupWindowScope(SynthEngine, scheduler);
 
-  const demos = new Demos();
+  const demos = new Demos(pstEngine);
 
   /**
    * Setup events for buttons
