@@ -68,8 +68,10 @@ export default class SynthEngine {
   }
 
   static stop(){
-    this.audioContext.close();
-    this.closeSynths();
+    setTimeout(()=>{
+      this.audioContext.close();
+      this.closeSynths();
+    }, 2000);
   }
 
   /**
