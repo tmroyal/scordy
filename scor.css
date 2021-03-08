@@ -102,7 +102,7 @@ h1 {
   display: none;
 }
 
-#modalCode {
+.modal {
   position: fixed;
   z-index: 100; /* this is high because blockly text is high */
   left: 0;
@@ -112,7 +112,7 @@ h1 {
   background-color: rgba(26, 33, 36, 0.774);
 }
 
-#codeBackground {
+.modalBackground {
   background-color: rgb(107, 111, 136);
   margin: 4em 20%;
   padding: 2em;
