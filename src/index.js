@@ -5,6 +5,7 @@ import ConfigBlocklyBlocks from "./BlocklyConfig/ConfigBlockly.js"
 import setupWindowScope from "./setupWindowScope"
 import Visualizer from "./Visualizer/Visualizer.js"
 import PersistenceEngine from "./PersistenceEngine.js"
+import Demos from "./Demos"
 
 // run this on load
 document.addEventListener("DOMContentLoaded", function(){
@@ -50,16 +51,21 @@ document.addEventListener("DOMContentLoaded", function(){
   // attach events so eval works
   setupWindowScope(SynthEngine, scheduler);
 
+  const demos = new Demos();
+
   /**
    * Setup events for buttons
    */
   pstEngine.attach("newScore", "openScore", "saveScore", "fileInput");
 
   const modalCode = document.getElementById("modalCode");
+  const modalDemos = document.getElementById("modalDemos");
 
   const startButton = document.getElementById("startAudio");
   const stopButton = document.getElementById("stopAudio");
   const codeButton = document.getElementById("showCode");
+
+  const demoLink = document.getElementById("demoLink");
 
   function startAudio(){
 
@@ -85,15 +91,25 @@ document.addEventListener("DOMContentLoaded", function(){
   stopButton.addEventListener("click", stopAudio);
   stopButton.disabled = true;
 
-  function hideModal(){
+  function hideDemos(){
+    modalDemos.classList.add('hidden');
+  }
+
+  function showDemos(){
+    modalDemos.classList.remove('hidden');
+  }
+
+  function hideCode(){
     modalCode.classList.add('hidden');
   }
 
-  function showModal(){
+  function showCode(){
     modalCode.classList.remove('hidden');
   }
 
-  modalCode.onclick = hideModal;
-  codeButton.onclick = showModal;
+  modalCode.onclick = hideCode;
+  modalDemos.onclick = hideDemos;
+  codeButton.onclick = showCode;
+  demoLink.onclick = showDemos;
 
 });

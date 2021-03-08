@@ -1,6 +1,14 @@
 const path = require('path');
 
 module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.xml$/,
+        use: 'raw-loader',
+      },
+    ]
+  },
   entry: {
     index: './src/index.js'
   },
@@ -8,14 +16,6 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
-  },
-  module: {
-    rules: [
-      {
-        test: /\.xml$/i,
-        use: 'raw-loader',
-      },
-    ],
   },
   watch: true
 }
