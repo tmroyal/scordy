@@ -4,8 +4,15 @@ import SynthUtil from "./SynthUtil.js"
 export default class Organ extends Synth {
   constructor(engine){ 
     super(engine); 
-    this.wave = this.setupWave();
     this.setADSR(0.009, 0, 1.0, 0.1);
+  }
+
+  init(){
+    this.wave = this.setupWave();
+  }
+
+  close(){
+    this.wave = null;
   }
 
   setupWave(){

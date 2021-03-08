@@ -74,4 +74,7 @@ export default class Synth {
     time += this.release;
     val.linearRampToValueAtTime(0, time);
   }
+
+  init(){}
+  close(){}
 };

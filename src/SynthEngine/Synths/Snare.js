@@ -5,8 +5,16 @@ const NOISEBUFFERSIZE = 8000;
 export default class Snare extends Synth {
   constructor(engine){
     super(engine);
-    this.setupNoise();
     this.attack = 0.01;
+  }
+
+  init(){
+    console.log("setup noise")
+    this.setupNoise();
+  }
+
+  close(){
+    this.noiseBuffer = null;
   }
 
   setupNoise(){

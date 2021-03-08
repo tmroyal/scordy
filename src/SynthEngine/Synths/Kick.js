@@ -2,10 +2,28 @@ import Synth from "./Synth.js";
 
 const NOISEBUFFERSIZE = 5000;
 
-export default class Snare extends Synth {
+export default class Kick extends Synth {
   constructor(engine){
     super(engine);
     this.attack = 0.01;
+  }
+
+  init(){
+    this.setupNoise();
+  }
+
+  close(){
+    this.noiseBuffer = null;
+  }
+
+  setupNoise(){
+    this.noiseBuffer = this.engine.audioContext.createBuffer(
+            1, NOISEBUFFERSIZE, this.engine.audioContext.sampleRate);
+ 
+    var bufferData = this.noiseBuffer.getChannelData(0);
+    for (let i = 0; i < NOISEBUFFERSIZE; i++){
+      bufferData[i] = Math.random() * 2.0 - 1.0;
+    }
   }
 
   /**
