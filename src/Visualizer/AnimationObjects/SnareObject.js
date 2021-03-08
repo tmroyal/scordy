@@ -18,7 +18,7 @@ export default class SnareObject extends BufferedObject {
 
     this.buffer = buffer;
     this.color = 'hsla(54, 93%, 76%, 0.91)';
-    this.x -= 20;
+    this.x = width - 80;
   }
 
   draw(p, dt){

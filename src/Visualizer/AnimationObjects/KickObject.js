@@ -20,7 +20,7 @@ export default class KickObject extends BufferedObject {
 
     this.buffer = buffer;
     this.color = 'hsla(191, 93%, 90%, 0.91)';
-    this.x -= 40;
+    this.x = 40;
     this.bufferOffset = 0.0;
   }
 

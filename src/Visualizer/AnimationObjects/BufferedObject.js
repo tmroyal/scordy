@@ -5,7 +5,6 @@ export default class BufferedObject extends AnimationObject {
 
   constructor(params, width, height, delay){
     super(params, width, height, delay);
-    this.x = width/2;
     this.bufferOffset = Math.floor(Math.random()*5);
   }
 

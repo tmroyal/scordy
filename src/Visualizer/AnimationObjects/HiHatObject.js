@@ -19,7 +19,7 @@ export default class HiHatObject extends BufferedObject {
 
     this.buffer = buffer;
     this.color = 'hsla(273, 93%, 76%, 0.91)';
-    this.x += 20;
+    this.x = width - 40;
   }
 
   draw(p, dt){

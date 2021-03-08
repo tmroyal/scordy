@@ -15,6 +15,7 @@ export default class CowbellObject extends BufferedObject {
   constructor(params, width, height, delay){
     super(params, width, height, delay);
 
+    this.x = width - 120;
     this.buffer = buffer;
     this.color = 'hsla(190, 88%, 57%, 0.9)';
   }
