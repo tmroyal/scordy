@@ -6,10 +6,19 @@ const NOISEBUFFERSIZE = 1024;
 export default class Cowbell extends Synth {
   constructor(engine){
     super(engine);
-    this.setupFilters();
-    this.setupNoise();
     this.attack = 0.01;
     this.decay = 0.1;
+  }
+
+  init(){
+    this.setupFilters();
+    this.setupNoise();
+  }
+
+  close(){
+    this.noiseBuffer = null;
+    this.filtersOutput = null;
+    this.filtersInput = null;
   }
 
   setupNoise(){

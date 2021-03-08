@@ -12,22 +12,11 @@ export default class SynthEngine {
   }
 
   /**
-   * initialize audio engine
+   * 
+   * 
    */
-  static init(visualizer){
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    this.audioContext = new AudioContext();
-    this.limiter = this.audioContext.createDynamicsCompressor();
-    this.gainNode = this.audioContext.createGain();
-    this.gainNode.connect(this.limiter).connect(this.audioContext.destination);
+  static setupSynths(){
     this.synths = {};
-
-    // limiter settings
-    this.limiter.threshold.value = -6;
-    this.limiter.knee.value = 3;
-    this.limiter.ratio.value = 20;
-
-    this.visualizer = visualizer;
 
     this.synths['SINE'] = new SineSynth(this);
     this.synths['SAW'] = new Saw(this);
@@ -41,6 +30,48 @@ export default class SynthEngine {
     this.synths['HIHAT'] = new Hihat(this);
     this.synths['SNARE'] = new Snare(this);
     this.synths['KICK'] = new Kick(this);
+  }
+
+  static setVisualizer(visualizer){
+    this.visualizer = visualizer;
+  }
+
+  /**
+   * initialize audio engine
+   */
+  static init(visualizer){
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    this.audioContext = new AudioContext();
+    this.limiter = this.audioContext.createDynamicsCompressor();
+    this.gainNode = this.audioContext.createGain();
+    this.gainNode.connect(this.limiter).connect(this.audioContext.destination);
+
+    // limiter settings
+    this.limiter.threshold.value = -6;
+    this.limiter.knee.value = 3;
+    this.limiter.ratio.value = 20;
+
+    this.initializeSynths();
+
+  }
+
+  static initializeSynths(){
+    for (const [key, synth] of Object.entries(this.synths)) {
+      synth.init();
+    }
+  }
+
+  static closeSynths(){
+    for (const [key, synth] of Object.entries(this.synths)) {
+      synth.close();
+    }
+  }
+
+  static stop(){
+    setTimeout(()=>{
+      this.audioContext.close();
+      this.closeSynths();
+    }, 2000);
   }
 
   /**

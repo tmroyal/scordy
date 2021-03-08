@@ -6,10 +6,20 @@ const NOISEBUFFERSIZE = 4410;
 export default class Hihat extends Synth {
   constructor(engine){
     super(engine);
-    this.setupFilters();
-    this.setupNoise();
     this.attack = 0.01;
     this.decay = 0.09;
+  }
+
+  init(){
+    this.setupFilters();
+    this.setupNoise();
+  }
+
+  close(){
+    this.noiseBuffer = null;
+    this.filtersOutput = null;
+    this.filtersInput = null;
+    this.allpass = null;
   }
 
   setupNoise(){

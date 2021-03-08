@@ -17,10 +17,8 @@ document.addEventListener("DOMContentLoaded", function(){
   const scheduler = new Scheduler(SynthEngine);
   
   // Setup synth engine
-  SynthEngine.init(visualizer);
-  SynthEngine.setVolume(0.6);
-  visualizer.setAudioContext(SynthEngine.audioContext);
-
+  SynthEngine.setVisualizer(visualizer);
+  SynthEngine.setupSynths();
   // setup Blockly
   const workspace = Blockly.inject('blockly',
     {
@@ -68,6 +66,9 @@ document.addEventListener("DOMContentLoaded", function(){
   const demoLink = document.getElementById("demoLink");
 
   function startAudio(){
+    SynthEngine.init();
+    SynthEngine.setVolume(0.6);
+    visualizer.setAudioContext(SynthEngine.audioContext);
 
     startButton.disabled = true;
     stopButton.disabled = false;
@@ -84,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function(){
     scheduler.stop();
     stopButton.disabled = true;
     startButton.disabled = false;
+    SynthEngine.stop();
   }
 
   startButton.addEventListener("click", startAudio);
